@@ -8,37 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04310ef9-c918-4b51-90a9-835872980072" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Grid.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Grid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFollowing.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFollowing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/ScenePathFindingMouse.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/ScenePathFindingMouse.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/ScenePathFindingMouse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Seek.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Seek.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +105,7 @@
       <workItem from="1697877522113" duration="10148000" />
       <workItem from="1698175681551" duration="1055000" />
       <workItem from="1698411708269" duration="2233000" />
-      <workItem from="1698413975700" duration="5682000" />
+      <workItem from="1698413975700" duration="6191000" />
     </task>
     <servers />
   </component>

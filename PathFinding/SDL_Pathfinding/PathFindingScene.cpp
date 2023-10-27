@@ -81,7 +81,10 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	case SDL_MOUSEBUTTONDOWN:
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
-			RepositionatePlayer(event);
+			if (_agent->getCurrentTargetIndex() == -1)
+			{
+				RepositionatePlayer(event);				
+			}
 		}
 		if (event->button.button == SDL_BUTTON_RIGHT)
 		{
