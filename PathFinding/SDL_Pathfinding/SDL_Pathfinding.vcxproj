@@ -132,21 +132,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="BreadthFirstSearchAlgorithm.cpp" />
+    <ClCompile Include="DijkstraAlgorithm.cpp" />
+    <ClCompile Include="GreedyBestFirstSearchAlgorithm.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PathFollowing.cpp" />
-    <ClCompile Include="ScenePathFindingMouse.cpp" />
+    <ClCompile Include="PathFindingScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
     <ClCompile Include="Seek.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="BreadthFirstSearchAlgorithm.h" />
+    <ClInclude Include="CurrentAlgorithm.h" />
+    <ClInclude Include="DijkstraAlgorithm.h" />
+    <ClInclude Include="GreedyBestFirstSearchAlgorithm.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="PathFindingAlgorithm.h" />
     <ClInclude Include="PathFollowing.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="ScenePathFindingMouse.h" />
+    <ClInclude Include="PathFindingScene.h" />
     <ClInclude Include="SDL_SimpleApp.h" />
     <ClInclude Include="Seek.h" />
     <ClInclude Include="utils.h" />
