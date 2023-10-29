@@ -95,12 +95,12 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 
 			//////////////////////////////////////////////////
 			
-			//_currentPathFindingAlgorithm->CalculatePath(
-			//	_agent->getPosition(), 
-			//	_maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
-			//	_maze,
-			//	_agent
-			//);
+			_currentPathFindingAlgorithm->CalculatePath(
+				_maze->pix2cell(_agent->getPosition()),
+				_maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
+				*_maze,
+				*_agent
+			);
 		}
 		break;
 	default:

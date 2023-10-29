@@ -1,6 +1,8 @@
-﻿  AStarAlgorithm.cpp
-  DijkstraAlgorithm.cpp
-  GreedyBestFirstSearchAlgorithm.cpp
-  main.cpp
-  Generating Code...
+﻿  BreadthFirstSearchAlgorithm.cpp
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(10,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(10,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(28,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(29,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(46,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\BreadthFirstSearchAlgorithm.cpp(46,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
