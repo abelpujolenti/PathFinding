@@ -24,6 +24,7 @@ void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Gr
 	std::vector<std::vector<int>> visited(height, std::vector<int>(width));
 	std::queue<std::pair<int, int>> toVisit;
 	toVisit.push({ (int)end.x + (int)end.y * width , 1 });
+	visited[end.y][end.x] = 1;
 
 	int xEnd = start.x;
 	int yEnd = start.y;
@@ -34,17 +35,17 @@ void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Gr
 		int depth = toVisit.front().second;
 		toVisit.pop();
 
-		if (visited[currY][currX]) continue;
-		visited[currY][currX] = depth;
-
 		if (currX == xEnd && currY == yEnd) {
 			Backtrack(xEnd, yEnd, width, height, visited, grid, agent);
 		}
 
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
-				if (abs(i + j) != 1 || !grid.isValidCell(Vector2D(currX + i, currY + j)) || visited[currY + j][currX + i] != 0) continue;
-				toVisit.push({ (currX + i) + (currY + j) * width , depth + 1 });
+				int neighborX = currX + i;
+				int neighborY = currY + j;
+				if (abs(i + j) != 1 || !grid.isValidCell(Vector2D(neighborX, neighborY)) || visited[neighborY][neighborX] != 0) continue;
+				toVisit.push({ neighborX + neighborY * width , depth + 1 });
+				visited[neighborY][neighborX] = depth + 1;
 			}
 		}
 	}
