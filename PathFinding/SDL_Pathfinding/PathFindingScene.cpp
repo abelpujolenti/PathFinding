@@ -11,7 +11,7 @@ PathFindingScene::PathFindingScene()
 {
 	draw_grid = false;
 	_maze = std::make_unique<Grid>(Grid("../res/maze.csv"));	
-
+	
 	loadTextures("../res/maze.png", "../res/coin.png");
 
 	srand((unsigned int)time(NULL));
@@ -94,6 +94,13 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 			//Remember, function Add Path Point from Agent receive only one Vector2D
 
 			//////////////////////////////////////////////////
+			
+			//_currentPathFindingAlgorithm->CalculatePath(
+			//	_agent->getPosition(), 
+			//	_maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
+			//	_maze,
+			//	_agent
+			//);
 		}
 		break;
 	default:

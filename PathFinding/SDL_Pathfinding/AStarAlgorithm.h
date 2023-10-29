@@ -5,5 +5,5 @@ class AStarAlgorithm : public PathFindingAlgorithm
 {
 public:
     ~AStarAlgorithm() = default;
-    void CalculatePath() override;
+    void CalculatePath(Vector2D start, Vector2D end, Grid& grid, Agent& agent) override;
 };

@@ -1,10 +1,6 @@
-﻿  Agent.cpp
-  Grid.cpp
+﻿  AStarAlgorithm.cpp
+  DijkstraAlgorithm.cpp
+  GreedyBestFirstSearchAlgorithm.cpp
   main.cpp
-  PathFollowing.cpp
-  ScenePathFindingMouse.cpp
-  SDL_SimpleApp.cpp
-  Seek.cpp
-  utils.cpp
   Generating Code...
-  SDL_Pathfinding.vcxproj -> C:\Users\lluis\Desktop\AI-Enti\2223\practiques\old\SDL_Pathfinding_v01\SDL_Pathfinding\bin\SDL_Pathfinding.exe
+  SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
