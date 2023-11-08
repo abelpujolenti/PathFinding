@@ -113,7 +113,7 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	if (DidPlayerTakeCoin())
 	{
 		PlaceCoinInNewPosition();
-		ChangePathFindingAlgorithm();
+		//ChangePathFindingAlgorithm();  //?????????????
 	}
 	
 }
