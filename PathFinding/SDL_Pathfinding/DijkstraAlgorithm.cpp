@@ -1,17 +1,17 @@
 ﻿#include "DijkstraAlgorithm.h"
 
 
-void DijkstraAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Agent& agent)
+void DijkstraAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Path& agentPath)
 {
 	while (path[yEnd][xEnd] > -1) {
 		int curr = path[yEnd][xEnd];
 		xEnd = curr % width;
 		yEnd = curr / width;
-		agent.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
+		agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
 	}
 }
 
-void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Agent& agent)
+void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -33,7 +33,7 @@ void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, 
 
 		if (currX == xEnd && currY == yEnd) {
 			std::cout << costSoFar[yEnd][xEnd] << std::endl;
-			Backtrack(xEnd, yEnd, width, path, grid, agent);
+			Backtrack(xEnd, yEnd, width, path, grid, agentPath);
 			break;
 		}
 

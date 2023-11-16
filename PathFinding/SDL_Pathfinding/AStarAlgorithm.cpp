@@ -1,14 +1,14 @@
 ﻿#include "AStarAlgorithm.h"
 
 
-void AStarAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Agent& agent)
+void AStarAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Path& agentPath)
 {
 	while (path[yEnd][xEnd] > -1) {
 		//std::cout << xEnd << ", " << yEnd << std::endl;
 		int curr = path[yEnd][xEnd];
 		xEnd = curr % width;
 		yEnd = curr / width;
-		agent.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
+		agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
 	}
 }
 
@@ -29,7 +29,7 @@ float AStarAlgorithm::Heuristic(float g, float h, float a, float b)
 	return g * a + h * b;
 }
 
-void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Agent& agent)
+void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -51,7 +51,7 @@ void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Age
 
 		if (currX == xEnd && currY == yEnd) {
 			std::cout << costSoFar[yEnd][xEnd] << std::endl;
-			Backtrack(xEnd, yEnd, width, path, grid, agent);
+			Backtrack(xEnd, yEnd, width, path, grid, agentPath);
 			break;
 		}
 

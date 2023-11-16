@@ -2,11 +2,6 @@
 
 #include <utility>
 
-#include "AStarAlgorithm.h"
-#include "BreadthFirstSearchAlgorithm.h"
-#include "DijkstraAlgorithm.h"
-#include "GreedyBestFirstSearchAlgorithm.h"
-
 PathFindingScene::PathFindingScene()
 {
 	draw_grid = false;
@@ -15,20 +10,14 @@ PathFindingScene::PathFindingScene()
 	loadTextures("../res/maze.png", "../res/coin.png");
 
 	srand((unsigned int)time(NULL));
-
-	_currentPathFindingAlgorithm.reset(new BreadthFirstSearchAlgorithm);
-
+	
 	_player = std::make_shared<Player>();
-	_player->loadSpriteTexture("../res/soldier.png", 4);
-	_player->setBehavior(new PathFollowing);
 
 	std::vector<std::shared_ptr<Enemy>> auxEnemies;
 	auxEnemies.reserve(NUMBER_ENEMIES);
 	for (int i = 0; i < NUMBER_ENEMIES; ++i)
 	{
 		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
-		enemy->loadSpriteTexture("../res/zombie1.png", 8);
-		enemy->setBehavior(new PathFollowing);
 		auxEnemies.push_back(enemy);
 	}
 	_enemies = auxEnemies;
@@ -44,98 +33,50 @@ PathFindingScene::~PathFindingScene()
 		SDL_DestroyTexture(coin_texture);
 }
 
-void PathFindingScene::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm)
-{
-	if (_currentAlgorithmTag == newAlgorithmTag)
-	{
-		return;
-	}
-	
-	if (_player->getCurrentTargetIndex() == -1)
-	{
-		ChangeAlgorithmTag(newAlgorithmTag);
-		_currentPathFindingAlgorithm.reset(newPathFindingAlgorithm);
-	}
-	else
-	{
-		_nextAlgorithmTag = newAlgorithmTag;
-		_nextPathFindingAlgorithm.reset(newPathFindingAlgorithm);
-	}
-}
-
 void PathFindingScene::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
+	
 	switch (event->type) {
-	case SDL_KEYDOWN:
-		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-		{
-			draw_grid = !draw_grid;
-		}
-		if (event->key.keysym.scancode == SDL_SCANCODE_1)
-		{
-			OnTryToChangeAlgorithm(CurrentAlgorithm::BFS, new BreadthFirstSearchAlgorithm);
-		}		
-		if (event->key.keysym.scancode == SDL_SCANCODE_2)
-		{
-			OnTryToChangeAlgorithm(CurrentAlgorithm::Dijkstra, new DijkstraAlgorithm);
-		}		
-		if (event->key.keysym.scancode == SDL_SCANCODE_3)
-		{
-			OnTryToChangeAlgorithm(CurrentAlgorithm::Greedy, new GreedyBestFirstSearchAlgorithm);
-		}		
-		if (event->key.keysym.scancode == SDL_SCANCODE_4)
-		{
-			OnTryToChangeAlgorithm(CurrentAlgorithm::A, new AStarAlgorithm);
-		}
-		break;
-	case SDL_MOUSEBUTTONDOWN:
-		if (event->button.button == SDL_BUTTON_LEFT)
-		{
-			if (_player->getCurrentTargetIndex() == -1)
-			{
-				RepositionPlayer(event);				
-			}
-		}
-		if (event->button.button == SDL_BUTTON_RIGHT)
-		{
-			//////////////////////HERE/////////////////////////
+		case SDL_KEYDOWN:
+			switch (event->key.keysym.scancode) {
+				case SDL_SCANCODE_SPACE:
+					draw_grid = !draw_grid;	
+					break;
 
-			//Call Algorithm function to calculate new path points
-			//Remember, function Add Path Point from Agent receive only one Vector2D
-
-			//////////////////////////////////////////////////
+				case SDL_SCANCODE_1:
+				case SDL_SCANCODE_2:
+				case SDL_SCANCODE_3:
+				case SDL_SCANCODE_4:
+					if (_player->getPathSize() == 0)
+					{
+						InitializeSceneComponents();
+					}
+					break;
+				default:
+					break;
+			}			
 			
-			_currentPathFindingAlgorithm->CalculatePath(
-				_maze->pix2cell(_player->getPosition()),
-				_maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
-				*_maze,
-				*_player
-			);
-		}
-		break;
-	default:
-		break;
+			break;
+		default:
+			break;
 	}
 
-	_player->update(dtime, event);
+	std::weak_ptr<Grid> mazeWeakPointer = _maze;
+	if (std::shared_ptr<Grid> mazeLock = mazeWeakPointer.lock())
+	{		
+		_player->AgentUpdate(dtime, event, mazeLock);
 
-	for (int i = 0; i < _enemies.size(); ++i)
-	{
-		_enemies[i]->update(dtime, event);
-		std::weak_ptr<Enemy> enemy = _enemies[i];
-		if (DidEnemyReachDestination(enemy))
+		for (int i = 0; i < _enemies.size(); ++i)
 		{
-			return;
-		}
-
-	}
+			_enemies[i]->AgentUpdate(dtime, event, mazeLock);
+		}	
+	}	
 
 	// if we have arrived to the coin, replace it in a random cell!
 	if (DidPlayerTakeCoin())
 	{
 		PlaceCoinInNewPosition();
-		//ChangePathFindingAlgorithm();  //?????????????
 	}
 	
 }
@@ -200,9 +141,9 @@ void PathFindingScene::drawMaze() const
 
 void PathFindingScene::drawCoin() const
 {
-	Vector2D coin_coords = _maze->cell2pix(coinPosition);
-	int offset = CELL_SIZE / 2;
-	SDL_Rect dstrect = {(int)coin_coords.x-offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE};
+	const Vector2D coin_coords = _maze->cell2pix(coinPosition);
+	const int offset = CELL_SIZE / 2;
+	const SDL_Rect dstrect = {(int)coin_coords.x-offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE};
 	SDL_RenderCopy(TheApp::Instance()->getRenderer(), coin_texture, NULL, &dstrect);
 }
 
@@ -213,15 +154,14 @@ void PathFindingScene::InitializeSceneComponents()
 	
 	for (int i = 0; i < totalAgents; i++)
 	{
-		do
-		{
-			rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
-		} while (!_maze->isValidCell(rand_cell));
-
+		rand_cell = CalculateRandomPosition();
+		
 		if (i < NUMBER_ENEMIES)
 		{
-			_enemies[i]->setPosition(_maze->cell2pix(rand_cell));
-			continue;
+			const Vector2D cell = _maze->cell2pix(rand_cell);			
+			_enemies[i]->setPosition(cell);
+			_enemies[i]->SetDestination(cell);
+			_enemies[i]->clearPath();
 		}
 		_player->setPosition(_maze->cell2pix(rand_cell));
 	}
@@ -229,11 +169,8 @@ void PathFindingScene::InitializeSceneComponents()
 	PlaceCoinInNewPosition();	
 }
 
-
-
 void PathFindingScene::PlaceCoinInNewPosition()
 {	
-	coinPosition = Vector2D(-1, -1);
 	do
 	{
 		coinPosition = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
@@ -243,46 +180,22 @@ void PathFindingScene::PlaceCoinInNewPosition()
 		
 }
 
-void PathFindingScene::ChangeAlgorithmTag(CurrentAlgorithm newAlgorithm)
-{
-	InitializeSceneComponents();		
-	_player->clearPath();
-	_player->setVelocity(Vector2D(0,0));
-	_currentAlgorithmTag = newAlgorithm;
-}
-
-void PathFindingScene::ChangePathFindingAlgorithm()
-{
-	if (_currentAlgorithmTag == _nextAlgorithmTag)
-	{
-		return;
-	}
-	_currentAlgorithmTag = _nextAlgorithmTag;
-	_currentPathFindingAlgorithm = std::move(_nextPathFindingAlgorithm);
-}
-
 bool PathFindingScene::DidPlayerTakeCoin() const
 {
 	return _player->getCurrentTargetIndex() == -1 && _maze->pix2cell(_player->getPosition()) == coinPosition;
 }
 
-bool PathFindingScene::DidEnemyReachDestination(std::weak_ptr<Enemy> enemy) const
+Vector2D PathFindingScene::CalculateRandomPosition() const
 {
-	if (std::shared_ptr<Enemy> enemyLock = enemy.lock())
+	Vector2D rand_cell;
+	
+	do
 	{
-		return enemyLock->getCurrentTargetIndex() == -1 && _maze->pix2cell(enemyLock->getPosition()) == enemyLock->GetDestination();
-	}
-}
+		rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
+	} while (!_maze->isValidCell(rand_cell));
 
-void PathFindingScene::RepositionPlayer(SDL_Event* event) const
-{	
-	Vector2D cell = _maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
-	if (_maze->isValidCell(cell)) {
-		_player->clearPath();
-		_player->setPosition(_maze->cell2pix(cell));
-	}
+	return rand_cell;
 }
-
 
 bool PathFindingScene::loadTextures(char* filename_bg, char* filename_coin)
 {

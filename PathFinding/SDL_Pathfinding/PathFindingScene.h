@@ -25,14 +25,7 @@ private:
 
 	std::vector<std::shared_ptr<Enemy>> _enemies;
 
-	std::unique_ptr<Grid> _maze;
-
-	CurrentAlgorithm _currentAlgorithmTag;
-	CurrentAlgorithm _nextAlgorithmTag;
-
-	std::unique_ptr<PathFindingAlgorithm> _currentPathFindingAlgorithm;
-	
-	std::unique_ptr<PathFindingAlgorithm> _nextPathFindingAlgorithm;
+	std::shared_ptr<Grid> _maze;
 
 	Vector2D coinPosition;
 
@@ -44,12 +37,8 @@ private:
 	void drawCoin() const;
 	void InitializeSceneComponents();
 	void PlaceCoinInNewPosition();
-	void OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm);
-	void ChangeAlgorithmTag(CurrentAlgorithm newAlgorithm);
-	void ChangePathFindingAlgorithm();
 	bool DidPlayerTakeCoin() const;
-	bool DidEnemyReachDestination(std::weak_ptr<Enemy> enemy) const;
-	void RepositionPlayer(SDL_Event* event) const;
+	Vector2D CalculateRandomPosition() const;
 	
 public:
 	PathFindingScene();

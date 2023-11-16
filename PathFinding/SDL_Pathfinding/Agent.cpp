@@ -11,7 +11,8 @@ Agent::Agent() : sprite_texture(0),
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false)
+	             draw_sprite(false),
+				 path(std::make_shared<Path>())
 {
 }
 
@@ -117,22 +118,6 @@ void Agent::update(float dtime, SDL_Event *event)
 	}
 }
 
-
-void Agent::addPathPoint(Vector2D point)
-{
-	if (!path.points.empty())
-	{
-		if (path.points[path.points.size() - 1] == point)
-		{
-			return;
-		}			
-	}
-		
-
-	path.points.push_back(point);
-}
-
-
 int Agent::getCurrentTargetIndex() const
 {
 	return currentTargetIndex;
@@ -140,58 +125,23 @@ int Agent::getCurrentTargetIndex() const
 
 int Agent::getPathSize() const
 {
-	return path.points.size();
+	return path->points.size();
 }
 
 Vector2D Agent::getPathPoint(int idx) const
 {
-	return path.points[idx];
+	return path->points[idx];
 }
 
 void Agent::clearPath()
 {
 	setCurrentTargetIndex(-1);
-	path.points.clear();
+	path->points.clear();
 }
 
 void Agent::setCurrentTargetIndex(int idx)
 {
 	currentTargetIndex = idx;
-}
-
-void Agent::draw() const
-{
-	// Path
-	for (int i = 0; i < (int)path.points.size(); i++)
-	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)(path.points[i].x), (int)(path.points[i].y), 15, 255, 255, 0, 255);
-		if (i > 0)
-			SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(path.points[i - 1].x), (int)(path.points[i - 1].y), (int)(path.points[i].x), (int)(path.points[i].y));
-	}
-
-	if (draw_sprite)
-	{
-		Uint32 sprite;
-		
-		if (_velocity.Length() < 5.0)
-			sprite = 1;
-		else
-			sprite = (int)(SDL_GetTicks() / (-0.1*_velocity.Length() + 250)) % sprite_num_frames;
-		
-		SDL_Rect srcrect = { (int)sprite * sprite_w, 0, sprite_w, sprite_h };
-		SDL_Rect dstrect = { (int)_position.x - (sprite_w / 2), (int)_position.y - (sprite_h / 2), sprite_w, sprite_h };
-		SDL_Point center = { sprite_w / 2, sprite_h / 2 };
-		SDL_RenderCopyEx(TheApp::Instance()->getRenderer(), sprite_texture, &srcrect, &dstrect, orientation+90, &center, SDL_FLIP_NONE);
-	}
-	else 
-	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, 15,
-			redValueCircle, greenValueCircle, blueValueCircle, 255);
-		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y,
-			(int)(_position.x+15*cos(orientation*DEG2RAD)), (int)(_position.y+15*sin(orientation*DEG2RAD)));
-	}
-
-	
 }
 
 bool Agent::loadSpriteTexture(char* filename, int _num_frames)

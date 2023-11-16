@@ -1,15 +1,15 @@
 ﻿#include "BreadthFirstSearchAlgorithm.h"
 
-void BreadthFirstSearchAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Agent& agent) {
+void BreadthFirstSearchAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Path& agentPath) {
 	while (path[yEnd][xEnd] > -1) {
 		int curr = path[yEnd][xEnd];
 		xEnd = curr % width;
 		yEnd = curr / width;
-		agent.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
+		agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
 	}
 }
 
-void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Agent& agent)
+void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -32,7 +32,7 @@ void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Gr
 				int curr = path[yEnd][xEnd];
 				xEnd = curr % width;
 				yEnd = curr / width;
-				agent.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
+				agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
 			}
 			break;
 		}

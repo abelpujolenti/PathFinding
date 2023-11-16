@@ -3,9 +3,15 @@
 #include <minmax.h>
 #include <SDL.h>
 #include <SDL_image.h>
+
 #include "SDL_SimpleApp.h"
 #include "Path.h"
+#include "PathFindingAlgorithm.h"
 #include "utils.h"
+#include "AStarAlgorithm.h"
+#include "BreadthFirstSearchAlgorithm.h"
+#include "DijkstraAlgorithm.h"
+#include "GreedyBestFirstSearchAlgorithm.h"
 
 
 class Agent
@@ -22,13 +28,15 @@ public:
 	
 protected:
 
+	std::unique_ptr<PathFindingAlgorithm> _currentPathFindingAlgorithm;
+	
 	std::unique_ptr<SteeringBehavior> _steeringBehavior;
 	Vector2D _position;
 	Vector2D _velocity;
 	Vector2D _target;
 
 	// Pathfinding
-	Path path;
+	std::shared_ptr<Path> path;
 	int currentTargetIndex;
 
 	float mass;
@@ -62,10 +70,10 @@ public:
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
 	void setCurrentTargetIndex(int idx);
-	void addPathPoint(Vector2D point);
 	void clearPath();
 	void update(float dtime, SDL_Event *event);
-	void draw() const;
+	virtual void AgentUpdate(float dtime, SDL_Event *event, std::shared_ptr<Grid> maze) = 0;
+	virtual void draw() const = 0;
 	bool loadSpriteTexture(char* filename, int num_frames=1);
 	
 };
