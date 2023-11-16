@@ -3,9 +3,9 @@
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
-                 position(Vector2D(100, 100)),
-	             target(Vector2D(1000, 100)),
-	             velocity(Vector2D(0,0)),
+                 _position(Vector2D(100, 100)),
+	             _target(Vector2D(1000, 100)),
+	             _velocity(Vector2D(0,0)),
 	             currentTargetIndex(-1),
 				 mass(0.1f),
 				 max_force(150),
@@ -22,58 +22,56 @@ Agent::~Agent()
 {
 	if (sprite_texture)
 		SDL_DestroyTexture(sprite_texture);
-	if (steering_behaviour)
-		delete (steering_behaviour);
 }
 
-void Agent::setBehavior(SteeringBehavior *behavior)
+void Agent::setBehavior(SteeringBehavior* steeringBehavior)
 {
-	steering_behaviour = behavior;
+	_steeringBehavior.reset(steeringBehavior);
 }
 
-Vector2D Agent::getPosition()
+Vector2D Agent::getPosition() const
 {
-	return position;
+	return _position;
 }
 
-Vector2D Agent::getTarget()
+Vector2D Agent::getTarget() const
 {
-	return target;
+	return _target;
 }
 
-Vector2D Agent::getVelocity()
+Vector2D Agent::getVelocity() const
 {
-	return velocity;
+	return _velocity;
 }
 
-float Agent::getMaxVelocity()
+float Agent::getMaxVelocity() const
 {
 	return max_velocity;
 }
 
-float Agent::getMaxForce()
+float Agent::getMaxForce() const
 {
 	return max_force;
 }
 
-float Agent::getMass()
+float Agent::getMass() const
 {
 	return mass;
 }
 
-void Agent::setPosition(Vector2D _position)
+void Agent::setPosition(Vector2D position)
 {
-	position = _position;
+	_position = position;
 }
 
-void Agent::setTarget(Vector2D _target)
+void Agent::setTarget(Vector2D target)
 {
-	target = _target;
+	_target = target;
 }
 
-void Agent::setVelocity(Vector2D _velocity)
+void Agent::setVelocity(Vector2D velocity)
 {
-	velocity = _velocity;
+	_velocity = velocity;
 }
 
 void Agent::update(float dtime, SDL_Event *event)
@@ -92,17 +90,17 @@ void Agent::update(float dtime, SDL_Event *event)
 	}
 
 	// Apply the steering behavior
-	steering_behaviour->applySteeringForce(this, dtime);
+	_steeringBehavior->applySteeringForce(this, dtime);
 	
 	// Update orientation
-	if (velocity.Length())
-		orientation = (float)(atan2(velocity.y, velocity.x) * RAD2DEG);
+	if (_velocity.Length())
+		orientation = (float)(atan2(_velocity.y, _velocity.x) * RAD2DEG);
 
 	// Trim position values to window size
-	if (position.x < 0) position.x = TheApp::Instance()->getWinSize().x;
-	if (position.y < 0) position.y = TheApp::Instance()->getWinSize().y;
-	if (position.x > TheApp::Instance()->getWinSize().x) position.x = 0;
-	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
+	if (_position.x < 0) _position.x = TheApp::Instance()->getWinSize().x;
+	if (_position.y < 0) _position.y = TheApp::Instance()->getWinSize().y;
+	if (_position.x > TheApp::Instance()->getWinSize().x) _position.x = 0;
+	if (_position.y > TheApp::Instance()->getWinSize().y) _position.y = 0;
 }
 
 
@@ -121,12 +119,12 @@ int Agent::getCurrentTargetIndex()
 	return currentTargetIndex;
 }
 
-int Agent::getPathSize()
+int Agent::getPathSize() const
 {
 	return path.points.size();
 }
 
-Vector2D Agent::getPathPoint(int idx)
+Vector2D Agent::getPathPoint(int idx) const
 {
 	return path.points[idx];
 }
@@ -142,7 +140,7 @@ void Agent::setCurrentTargetIndex(int idx)
 	currentTargetIndex = idx;
 }
 
-void Agent::draw()
+void Agent::draw() const
 {
 	// Path
 	for (int i = 0; i < (int)path.points.size(); i++)
@@ -156,20 +154,20 @@ void Agent::draw()
 	{
 		Uint32 sprite;
 		
-		if (velocity.Length() < 5.0)
+		if (_velocity.Length() < 5.0)
 			sprite = 1;
 		else
-			sprite = (int)(SDL_GetTicks() / (-0.1*velocity.Length() + 250)) % sprite_num_frames;
+			sprite = (int)(SDL_GetTicks() / (-0.1*_velocity.Length() + 250)) % sprite_num_frames;
 		
 		SDL_Rect srcrect = { (int)sprite * sprite_w, 0, sprite_w, sprite_h };
-		SDL_Rect dstrect = { (int)position.x - (sprite_w / 2), (int)position.y - (sprite_h / 2), sprite_w, sprite_h };
+		SDL_Rect dstrect = { (int)_position.x - (sprite_w / 2), (int)_position.y - (sprite_h / 2), sprite_w, sprite_h };
 		SDL_Point center = { sprite_w / 2, sprite_h / 2 };
 		SDL_RenderCopyEx(TheApp::Instance()->getRenderer(), sprite_texture, &srcrect, &dstrect, orientation+90, &center, SDL_FLIP_NONE);
 	}
 	else 
 	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, 15, 255, 255, 255, 255);
-		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, (int)(position.x+15*cos(orientation*DEG2RAD)), (int)(position.y+15*sin(orientation*DEG2RAD)));
+		draw_circle(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, 15, 255, 255, 255, 255);
+		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, (int)(_position.x+15*cos(orientation*DEG2RAD)), (int)(_position.y+15*sin(orientation*DEG2RAD)));
 	}
 
 	

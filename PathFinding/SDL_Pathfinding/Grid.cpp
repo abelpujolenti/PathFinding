@@ -55,3 +55,11 @@ bool Grid::isValidCell(Vector2D cell)
 		return false;
 	return !(terrain[(unsigned int)cell.y][(unsigned int)cell.x] == 0);
 }
+
+int Grid::GetCellWeight(Vector2D cell)
+{
+	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= terrain.size()) || (cell.x >= terrain[0].size()))
+		return false;
+	return terrain[(unsigned int)cell.y][(unsigned int)cell.x];
+}
+
