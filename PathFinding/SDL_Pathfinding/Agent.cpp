@@ -3,9 +3,6 @@
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
-                 _position(Vector2D(100, 100)),
-	             _target(Vector2D(1000, 100)),
-	             _velocity(Vector2D(0,0)),
 	             currentTargetIndex(-1),
 				 mass(0.1f),
 				 max_force(150),
@@ -83,7 +80,9 @@ void Agent::update(float dtime, SDL_Event *event)
 		/* Keyboard & Mouse events */
 	case SDL_KEYDOWN:
 		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
+		{
 			draw_sprite = !draw_sprite;
+		}			
 		break;
 	default:
 		break;
@@ -94,27 +93,47 @@ void Agent::update(float dtime, SDL_Event *event)
 	
 	// Update orientation
 	if (_velocity.Length())
-		orientation = (float)(atan2(_velocity.y, _velocity.x) * RAD2DEG);
+	{
+		orientation = atan2(_velocity.y, _velocity.x) * RAD2DEG;
+	}
+		
 
 	// Trim position values to window size
-	if (_position.x < 0) _position.x = TheApp::Instance()->getWinSize().x;
-	if (_position.y < 0) _position.y = TheApp::Instance()->getWinSize().y;
-	if (_position.x > TheApp::Instance()->getWinSize().x) _position.x = 0;
-	if (_position.y > TheApp::Instance()->getWinSize().y) _position.y = 0;
+	if (_position.x < 0)
+	{
+		_position.x = TheApp::Instance()->getWinSize().x;
+	}
+	if (_position.y < 0)
+	{
+		_position.y = TheApp::Instance()->getWinSize().y;
+	}
+	if (_position.x > TheApp::Instance()->getWinSize().x)
+	{
+		_position.x = 0;
+	}
+	if (_position.y > TheApp::Instance()->getWinSize().y)
+	{
+		_position.y = 0;
+	}
 }
 
 
 void Agent::addPathPoint(Vector2D point)
 {
-	if (path.points.size() > 0)
+	if (!path.points.empty())
+	{
 		if (path.points[path.points.size() - 1] == point)
+		{
 			return;
+		}			
+	}
+		
 
 	path.points.push_back(point);
 }
 
 
-int Agent::getCurrentTargetIndex()
+int Agent::getCurrentTargetIndex() const
 {
 	return currentTargetIndex;
 }
@@ -166,8 +185,10 @@ void Agent::draw() const
 	}
 	else 
 	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, 15, 255, 255, 255, 255);
-		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, (int)(_position.x+15*cos(orientation*DEG2RAD)), (int)(_position.y+15*sin(orientation*DEG2RAD)));
+		draw_circle(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y, 15,
+			redValueCircle, greenValueCircle, blueValueCircle, 255);
+		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)_position.x, (int)_position.y,
+			(int)(_position.x+15*cos(orientation*DEG2RAD)), (int)(_position.y+15*sin(orientation*DEG2RAD)));
 	}
 
 	

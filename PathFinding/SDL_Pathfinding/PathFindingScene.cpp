@@ -18,9 +18,20 @@ PathFindingScene::PathFindingScene()
 
 	_currentPathFindingAlgorithm.reset(new BreadthFirstSearchAlgorithm);
 
-	_agent = std::make_shared<Agent>();
-	_agent->loadSpriteTexture("../res/soldier.png", 4);
-	_agent->setBehavior(new PathFollowing);
+	_player = std::make_shared<Player>();
+	_player->loadSpriteTexture("../res/soldier.png", 4);
+	_player->setBehavior(new PathFollowing);
+
+	std::vector<std::shared_ptr<Enemy>> auxEnemies;
+	auxEnemies.reserve(NUMBER_ENEMIES);
+	for (int i = 0; i < NUMBER_ENEMIES; ++i)
+	{
+		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
+		enemy->loadSpriteTexture("../res/zombie1.png", 8);
+		enemy->setBehavior(new PathFollowing);
+		auxEnemies.push_back(enemy);
+	}
+	_enemies = auxEnemies;
 
 	InitializeSceneComponents();
 }
@@ -40,7 +51,7 @@ void PathFindingScene::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, 
 		return;
 	}
 	
-	if (_agent->getCurrentTargetIndex() == -1)
+	if (_player->getCurrentTargetIndex() == -1)
 	{
 		ChangeAlgorithmTag(newAlgorithmTag);
 		_currentPathFindingAlgorithm.reset(newPathFindingAlgorithm);
@@ -81,9 +92,9 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	case SDL_MOUSEBUTTONDOWN:
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
-			if (_agent->getCurrentTargetIndex() == -1)
+			if (_player->getCurrentTargetIndex() == -1)
 			{
-				RepositionatePlayer(event);				
+				RepositionPlayer(event);				
 			}
 		}
 		if (event->button.button == SDL_BUTTON_RIGHT)
@@ -96,10 +107,10 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 			//////////////////////////////////////////////////
 			
 			_currentPathFindingAlgorithm->CalculatePath(
-				_maze->pix2cell(_agent->getPosition()),
+				_maze->pix2cell(_player->getPosition()),
 				_maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
 				*_maze,
-				*_agent
+				*_player
 			);
 		}
 		break;
@@ -107,7 +118,12 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 		break;
 	}
 
-	_agent->update(dtime, event);
+	_player->update(dtime, event);
+
+	for (int i = 0; i < _enemies.size(); ++i)
+	{
+		_enemies[i]->update(dtime, event);
+	}
 
 	// if we have arrived to the coin, replace it in a random cell!
 	if (DidPlayerTakeCoin())
@@ -136,7 +152,13 @@ void PathFindingScene::draw()
 		}
 	}
 
-	_agent->draw();
+	_player->draw();
+
+	for (int i = 0; i < _enemies.size(); ++i)
+	{
+		_enemies[i]->draw();
+	}
+	
 }
 
 const char* PathFindingScene::getTitle()
@@ -179,13 +201,28 @@ void PathFindingScene::drawCoin() const
 }
 
 void PathFindingScene::InitializeSceneComponents()
-{	
-
-	// set agent position coords to the center of a random cell
-	Vector2D rand_cell(-1,-1);
-	while (!_maze->isValidCell(rand_cell))
-		rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
-	_agent->setPosition(_maze->cell2pix(rand_cell));
+{		
+	Vector2D rand_cell;
+	constexpr int totalAgents = NUMBER_ENEMIES + 1;
+	int counter = 0;
+	
+	while (counter < totalAgents)
+	{	
+		do
+		{
+			rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
+		}
+		while (!_maze->isValidCell(rand_cell));
+		
+		if (counter < NUMBER_ENEMIES)
+		{
+			_enemies[counter]->setPosition(_maze->cell2pix(rand_cell));
+			counter++;
+			continue;
+		}
+		_player->setPosition(_maze->cell2pix(rand_cell));
+		break;
+	}	
 
 	PlaceCoinInNewPosition();
 	
@@ -194,15 +231,20 @@ void PathFindingScene::InitializeSceneComponents()
 void PathFindingScene::PlaceCoinInNewPosition()
 {	
 	coinPosition = Vector2D(-1, -1);
-	while ((!_maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, _maze->pix2cell(_agent->getPosition()))<3))
+	do
+	{
 		coinPosition = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
+	}
+	while (!_maze->isValidCell(coinPosition) ||
+		Vector2D::Distance(coinPosition, _maze->pix2cell(_player->getPosition()))<3);
+		
 }
 
 void PathFindingScene::ChangeAlgorithmTag(CurrentAlgorithm newAlgorithm)
 {
 	InitializeSceneComponents();		
-	_agent->clearPath();
-	_agent->setVelocity(Vector2D(0,0));
+	_player->clearPath();
+	_player->setVelocity(Vector2D(0,0));
 	_currentAlgorithmTag = newAlgorithm;
 }
 
@@ -216,17 +258,17 @@ void PathFindingScene::ChangePathFindingAlgorithm()
 	_currentPathFindingAlgorithm = std::move(_nextPathFindingAlgorithm);
 }
 
-bool PathFindingScene::DidPlayerTakeCoin()
+bool PathFindingScene::DidPlayerTakeCoin() const
 {
-	return _agent->getCurrentTargetIndex() == -1 && _maze->pix2cell(_agent->getPosition()) == coinPosition;
+	return _player->getCurrentTargetIndex() == -1 && _maze->pix2cell(_player->getPosition()) == coinPosition;
 }
 
-void PathFindingScene::RepositionatePlayer(SDL_Event* event)
+void PathFindingScene::RepositionPlayer(SDL_Event* event) const
 {	
 	Vector2D cell = _maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
 	if (_maze->isValidCell(cell)) {
-		_agent->clearPath();
-		_agent->setPosition(_maze->cell2pix(cell));
+		_player->clearPath();
+		_player->setPosition(_maze->cell2pix(cell));
 	}
 }
 

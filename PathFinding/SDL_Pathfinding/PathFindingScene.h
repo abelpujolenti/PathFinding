@@ -9,6 +9,10 @@
 #include "Grid.h"
 #include "CurrentAlgorithm.h"
 #include "PathFindingAlgorithm.h"
+#include "Enemy.h"
+#include "Player.h"
+
+#define NUMBER_ENEMIES 5
 
 class PathFindingScene : public Scene
 {	
@@ -17,7 +21,9 @@ private:
 	SDL_Texture *background_texture;
 	SDL_Texture *coin_texture;
 	
-	std::shared_ptr<Agent> _agent;
+	std::shared_ptr<Player> _player;
+
+	std::vector<std::shared_ptr<Enemy>> _enemies;
 
 	std::unique_ptr<Grid> _maze;
 
@@ -41,8 +47,8 @@ private:
 	void OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm);
 	void ChangeAlgorithmTag(CurrentAlgorithm newAlgorithm);
 	void ChangePathFindingAlgorithm();
-	bool DidPlayerTakeCoin();
-	void RepositionatePlayer(SDL_Event* event);
+	bool DidPlayerTakeCoin() const;
+	void RepositionPlayer(SDL_Event* event) const;
 	
 public:
 	PathFindingScene();

@@ -20,7 +20,8 @@ public:
 		virtual void applySteeringForce(Agent *agent, float dtime) {};
 	};
 	
-private:
+protected:
+
 	std::unique_ptr<SteeringBehavior> _steeringBehavior;
 	Vector2D _position;
 	Vector2D _velocity;
@@ -40,7 +41,10 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
-
+	int redValueCircle;
+	int greenValueCircle;
+	int blueValueCircle;
+	
 public:
 	Agent();
 	~Agent();
@@ -49,7 +53,7 @@ public:
 	Vector2D getVelocity() const;
 	Vector2D getPathPoint(int idx) const;
 	int getPathSize() const;
-	int getCurrentTargetIndex();
+	int getCurrentTargetIndex() const;
 	float getMaxVelocity() const;
 	float getMaxForce() const;
 	float getMass() const;

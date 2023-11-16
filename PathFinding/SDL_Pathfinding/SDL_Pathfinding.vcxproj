@@ -135,11 +135,13 @@
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BreadthFirstSearchAlgorithm.cpp" />
     <ClCompile Include="DijkstraAlgorithm.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GreedyBestFirstSearchAlgorithm.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PathFollowing.cpp" />
     <ClCompile Include="PathFindingScene.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
     <ClCompile Include="Seek.cpp" />
     <ClCompile Include="utils.cpp" />
@@ -150,11 +152,13 @@
     <ClInclude Include="BreadthFirstSearchAlgorithm.h" />
     <ClInclude Include="CurrentAlgorithm.h" />
     <ClInclude Include="DijkstraAlgorithm.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GreedyBestFirstSearchAlgorithm.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="PathFindingAlgorithm.h" />
     <ClInclude Include="PathFollowing.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="PathFindingScene.h" />
     <ClInclude Include="SDL_SimpleApp.h" />

@@ -8,7 +8,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04310ef9-c918-4b51-90a9-835872980072" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SDL_Pathfinding/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SDL_Pathfinding/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +44,82 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -43,26 +144,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/PathFindingAlgorithms&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature/Enemies",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\abelp\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\abelp\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\abelp\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\abelp\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\abelp\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\abelp\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="SDL_Pathfinding" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -106,6 +207,8 @@
       <workItem from="1698175681551" duration="1055000" />
       <workItem from="1698411708269" duration="2233000" />
       <workItem from="1698413975700" duration="6191000" />
+      <workItem from="1700074328954" duration="1255000" />
+      <workItem from="1700120842375" duration="4997000" />
     </task>
     <servers />
   </component>
