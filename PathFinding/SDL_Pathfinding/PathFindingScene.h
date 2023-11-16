@@ -48,6 +48,7 @@ private:
 	void ChangeAlgorithmTag(CurrentAlgorithm newAlgorithm);
 	void ChangePathFindingAlgorithm();
 	bool DidPlayerTakeCoin() const;
+	bool DidEnemyReachDestination(std::weak_ptr<Enemy> enemy) const;
 	void RepositionPlayer(SDL_Event* event) const;
 	
 public:

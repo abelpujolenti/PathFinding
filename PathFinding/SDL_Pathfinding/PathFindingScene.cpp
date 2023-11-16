@@ -123,6 +123,12 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	for (int i = 0; i < _enemies.size(); ++i)
 	{
 		_enemies[i]->update(dtime, event);
+		std::weak_ptr<Enemy> enemy = _enemies[i];
+		if (DidEnemyReachDestination(enemy))
+		{
+			return;
+		}
+
 	}
 
 	// if we have arrived to the coin, replace it in a random cell!
@@ -156,7 +162,7 @@ void PathFindingScene::draw()
 
 	for (int i = 0; i < _enemies.size(); ++i)
 	{
-		_enemies[i]->draw();
+		_enemies[i]->draw();		
 	}
 	
 }
@@ -204,29 +210,26 @@ void PathFindingScene::InitializeSceneComponents()
 {		
 	Vector2D rand_cell;
 	constexpr int totalAgents = NUMBER_ENEMIES + 1;
-	int counter = 0;
 	
-	while (counter < totalAgents)
-	{	
+	for (int i = 0; i < totalAgents; i++)
+	{
 		do
 		{
 			rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
-		}
-		while (!_maze->isValidCell(rand_cell));
-		
-		if (counter < NUMBER_ENEMIES)
+		} while (!_maze->isValidCell(rand_cell));
+
+		if (i < NUMBER_ENEMIES)
 		{
-			_enemies[counter]->setPosition(_maze->cell2pix(rand_cell));
-			counter++;
+			_enemies[i]->setPosition(_maze->cell2pix(rand_cell));
 			continue;
 		}
 		_player->setPosition(_maze->cell2pix(rand_cell));
-		break;
-	}	
+	}
 
-	PlaceCoinInNewPosition();
-	
+	PlaceCoinInNewPosition();	
 }
+
+
 
 void PathFindingScene::PlaceCoinInNewPosition()
 {	
@@ -261,6 +264,14 @@ void PathFindingScene::ChangePathFindingAlgorithm()
 bool PathFindingScene::DidPlayerTakeCoin() const
 {
 	return _player->getCurrentTargetIndex() == -1 && _maze->pix2cell(_player->getPosition()) == coinPosition;
+}
+
+bool PathFindingScene::DidEnemyReachDestination(std::weak_ptr<Enemy> enemy) const
+{
+	if (std::shared_ptr<Enemy> enemyLock = enemy.lock())
+	{
+		return enemyLock->getCurrentTargetIndex() == -1 && _maze->pix2cell(enemyLock->getPosition()) == enemyLock->GetDestination();
+	}
 }
 
 void PathFindingScene::RepositionPlayer(SDL_Event* event) const

@@ -10,3 +10,13 @@ Enemy::Enemy()
 Enemy::~Enemy()
 {
 }
+
+void Enemy::SetDestination(Vector2D destination)
+{
+    _destination = destination;
+}
+
+Vector2D Enemy::GetDestination() const
+{
+    return _destination;
+}
