@@ -9,48 +9,27 @@
   <component name="ChangeListManager">
     <list default="true" id="04310ef9-c918-4b51-90a9-835872980072" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SDL_Pathfinding/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SDL_Pathfinding/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/AStarAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/AStarAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/AStarAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/AStarAlgorithm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Agent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/BreadthFirstSearchAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/BreadthFirstSearchAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/BreadthFirstSearchAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/BreadthFirstSearchAlgorithm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/DijkstraAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/DijkstraAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/DijkstraAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/DijkstraAlgorithm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Enemy.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Enemy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/GreedyBestFirstSearchAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/GreedyBestFirstSearchAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/GreedyBestFirstSearchAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/GreedyBestFirstSearchAlgorithm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Grid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Grid.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Grid.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Grid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Path.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Path.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingAlgorithm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFindingScene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/PathFollowing.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/PathFollowing.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Player.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/Player.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Agent.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Grid.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/PathFollowing.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.exe.recipe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/CL.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/SDL_Pathfinding.lastbuildstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_Pathfinding.tlog/link.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/SDL_SimpleApp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/Seek.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/utils.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.idb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SDL_Pathfinding/SDL_Pathfinding/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Seek.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDL_Pathfinding/Seek.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SDL_Pathfinding.pdb" afterDir="false" />
     </list>
@@ -63,6 +42,250 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.37.32822/include/memory" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.37.32822/include/vector" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.37.32822/include/xutility" root0="SKIP_HIGHLIGHTING" />
@@ -147,7 +370,7 @@
       <workItem from="1700074328954" duration="1255000" />
       <workItem from="1700120842375" duration="4997000" />
       <workItem from="1700160585294" duration="9742000" />
-      <workItem from="1700233652154" duration="9230000" />
+      <workItem from="1700233652154" duration="16068000" />
     </task>
     <servers />
   </component>
@@ -156,5 +379,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/SDL_Pathfinding/Player.cpp</url>
+          <line>58</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

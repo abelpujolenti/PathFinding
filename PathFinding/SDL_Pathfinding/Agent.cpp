@@ -2,17 +2,18 @@
 
 using namespace std;
 
-Agent::Agent() : sprite_texture(0),
-	             currentTargetIndex(-1),
-				 mass(0.1f),
-				 max_force(150),
-				 max_velocity(200),
-				 orientation(0),
-				 sprite_num_frames(0),
-	             sprite_w(0),
-	             sprite_h(0),
-	             draw_sprite(false),
-				 _path(std::make_shared<Path>())
+Agent::Agent(const std::shared_ptr<Grid>& enemyLayer) : _enemyLayer(enemyLayer),
+                                                   _path(std::make_shared<Path>()),
+                                                   currentTargetIndex(-1),
+                                                   mass(0.1f),
+                                                   orientation(0),
+                                                   max_force(150),
+                                                   max_velocity(200),
+                                                   sprite_texture(0),
+                                                   draw_sprite(false),
+                                                   sprite_num_frames(0),
+                                                   sprite_w(0),
+                                                   sprite_h(0), redValueCircle(0), greenValueCircle(0), blueValueCircle(0)
 {
 }
 

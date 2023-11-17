@@ -1,6 +1,7 @@
 #include "Player.h"
 
-Player::Player(int numberOfEnemies, Grid maze) : _recalculateOnChangingWeights(numberOfEnemies != 0)
+Player::Player(int numberOfEnemies, const std::shared_ptr<Grid>& enemyLayer) : Agent(enemyLayer)
+, _recalculateOnChangingWeights(numberOfEnemies != 0)
 {    
     _currentPathFindingAlgorithm.reset(new BreadthFirstSearchAlgorithm);
     redValueCircle = 255;
@@ -58,7 +59,7 @@ void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
             _currentPathFindingAlgorithm->CalculatePath(
                 maze->pix2cell(_position),
                 maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
-                *maze,
+                *_enemyLayer,
                 *_path
             );
         }
@@ -67,10 +68,10 @@ void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
         break;
     }
 
-    if (!_recalculateOnChangingWeights)
+    /*if (!_recalculateOnChangingWeights)
     {
         return;
-    }
+    }*/
     
 }
 

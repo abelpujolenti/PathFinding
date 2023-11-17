@@ -26,9 +26,12 @@ public:
 	
 protected:
 
+	std::shared_ptr<Grid> _enemyLayer;
+
 	std::unique_ptr<PathFindingAlgorithm> _currentPathFindingAlgorithm;
 	
 	std::unique_ptr<SteeringBehavior> _steeringBehavior;
+	
 	Vector2D _position;
 	Vector2D _velocity;
 	Vector2D _target;
@@ -56,7 +59,7 @@ protected:
 	void Move(float dtime, SDL_Event *event);
 	
 public:
-	Agent();
+	Agent(const std::shared_ptr<Grid>& enemyLayer);
 	~Agent();
 	Vector2D getPosition() const;
 	Vector2D getTarget() const;

@@ -1,13 +1,13 @@
 #include "Enemy.h"
 
-Enemy::Enemy(Grid maze) : _normalLayer(maze.GetNormalLayer())
+Enemy::Enemy(const std::shared_ptr<Grid>& enemyLayer, const std::shared_ptr<Grid>& normalLayer) : Agent(enemyLayer), _normalLayer(normalLayer)
 {    
     _currentPathFindingAlgorithm.reset(new AStarAlgorithm);
     redValueCircle = 255;
     greenValueCircle = 0;
     blueValueCircle = 0;
     loadSpriteTexture("../res/zombie1.png", 8);
-    setBehavior(new PathFollowing);
+    setBehavior(new PathFollowing); 
 }
 
 Enemy::~Enemy()
@@ -24,7 +24,7 @@ void Enemy::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
         _currentPathFindingAlgorithm->CalculatePath(
             maze->pix2cell(_position),
             maze->pix2cell(_destination),
-            *maze,
+            *_normalLayer,
             *_path);
     }
 }
@@ -49,6 +49,11 @@ bool Enemy::DidReachDestination(std::shared_ptr<Grid> maze) const
 void Enemy::SetDestination(Vector2D destination)
 {
     _destination = destination;
+}
+
+void Enemy::ModifyLayerWeights()
+{
+    
 }
 
 void Enemy::draw() const

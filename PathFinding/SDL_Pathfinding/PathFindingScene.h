@@ -23,7 +23,8 @@ private:
 
 	std::vector<std::shared_ptr<Enemy>> _enemies;
 
-	std::shared_ptr<Grid> _maze;
+	std::shared_ptr<Grid> _normalLayer;
+	std::shared_ptr<Grid> _enemyLayer;
 
 	Vector2D coinPosition;
 

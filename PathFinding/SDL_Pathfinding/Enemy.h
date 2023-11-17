@@ -7,7 +7,7 @@ class Enemy : public Agent
 {
 private:
 
-    std::vector<std::vector<int>> _normalLayer;
+    std::shared_ptr<Grid> _normalLayer;
     
     Vector2D _destination;
     
@@ -15,9 +15,10 @@ private:
     bool DidReachDestination(std::shared_ptr<Grid> maze) const;
     
 public:
-    Enemy(Grid maze);
+    Enemy(const std::shared_ptr<Grid>& enemyLayer, const std::shared_ptr<Grid>& normalLayer);
     ~Enemy();
     void update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze) override;
     void draw() const override;
-    void SetDestination(Vector2D destination);    
+    void SetDestination(Vector2D destination);
+    void ModifyLayerWeights();
 };

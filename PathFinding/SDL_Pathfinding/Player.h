@@ -19,7 +19,7 @@ private:
     void RepositionPlayer(SDL_Event* event, std::shared_ptr<Grid> maze);
     
 public:
-    Player(int numberOfEnemies, Grid maze);
+    Player(int numberOfEnemies, const std::shared_ptr<Grid>& enemyLayer);
     ~Player();
     void update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze) override;
     void draw() const override;

@@ -5,19 +5,33 @@
 PathFindingScene::PathFindingScene()
 {
 	draw_grid = false;
-	_maze = std::make_shared<Grid>(Grid("../res/maze.csv"));	
+	_normalLayer = std::make_shared<Grid>(Grid("../res/maze.csv"));
+	_enemyLayer = std::make_shared<Grid>(Grid("../res/maze.csv"));
+
+	
+
+	int x = _enemyLayer->getNumCellX();
+	int y = _enemyLayer->getNumCellY();
+
+	for (int i = 0; i < x; ++i)
+	{
+		for (int j = 0; j < y; ++j)
+		{
+			_enemyLayer->SetCellWeight(Vector2D(j, i), 3);
+		}
+	}
 	
 	loadTextures("../res/maze.png", "../res/coin.png");
 
 	srand((unsigned int)time(NULL));
 	
-	_player = std::make_shared<Player>(NUMBER_ENEMIES, *_maze);
+	_player = std::make_shared<Player>(NUMBER_ENEMIES, _enemyLayer);
 
 	std::vector<std::shared_ptr<Enemy>> auxEnemies;
 	auxEnemies.reserve(NUMBER_ENEMIES);
 	for (int i = 0; i < NUMBER_ENEMIES; ++i)
 	{
-		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(*_maze);
+		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(_enemyLayer, _normalLayer);
 		auxEnemies.push_back(enemy);
 	}
 	_enemies = auxEnemies;
@@ -62,8 +76,8 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 			break;
 	}
 
-	std::weak_ptr<Grid> mazeWeakPointer = _maze;
-	if (std::shared_ptr<Grid> mazeLock = mazeWeakPointer.lock())
+	const std::weak_ptr<Grid> mazeWeakPointer = _normalLayer;
+	if (const std::shared_ptr<Grid> mazeLock = mazeWeakPointer.lock())
 	{		
 		_player->update(dtime, event, mazeLock);
 
@@ -118,14 +132,14 @@ void PathFindingScene::drawMaze() const
 	SDL_SetRenderDrawColor(TheApp::Instance()->getRenderer(), 0, 0, 255, 255);
 	SDL_Rect rect;
 	Vector2D coords;
-	for (int j = 0; j < _maze->getNumCellY(); j++)
+	for (int j = 0; j < _normalLayer->getNumCellY(); j++)
 	{
-		for (int i = 0; i < _maze->getNumCellX(); i++)
+		for (int i = 0; i < _normalLayer->getNumCellX(); i++)
 		{		
-			if (!_maze->isValidCell(Vector2D((float)i, (float)j)))
+			if (!_normalLayer->isValidCell(Vector2D((float)i, (float)j)))
 			{
 				SDL_SetRenderDrawColor(TheApp::Instance()->getRenderer(), 0, 0, 255, 255);
-				coords = _maze->cell2pix(Vector2D((float)i, (float)j)) - Vector2D((float)CELL_SIZE / 2, (float)CELL_SIZE / 2);
+				coords = _normalLayer->cell2pix(Vector2D((float)i, (float)j)) - Vector2D((float)CELL_SIZE / 2, (float)CELL_SIZE / 2);
 				rect = { (int)coords.x, (int)coords.y, CELL_SIZE, CELL_SIZE };
 				SDL_RenderFillRect(TheApp::Instance()->getRenderer(), &rect);
 			} else {
@@ -141,7 +155,7 @@ void PathFindingScene::drawMaze() const
 
 void PathFindingScene::drawCoin() const
 {
-	const Vector2D coin_coords = _maze->cell2pix(coinPosition);
+	const Vector2D coin_coords = _normalLayer->cell2pix(coinPosition);
 	const int offset = CELL_SIZE / 2;
 	const SDL_Rect dstrect = {(int)coin_coords.x-offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE};
 	SDL_RenderCopy(TheApp::Instance()->getRenderer(), coin_texture, NULL, &dstrect);
@@ -158,12 +172,12 @@ void PathFindingScene::InitializeSceneComponents()
 		
 		if (i < NUMBER_ENEMIES)
 		{
-			const Vector2D cell = _maze->cell2pix(rand_cell);			
+			const Vector2D cell = _normalLayer->cell2pix(rand_cell);			
 			_enemies[i]->setPosition(cell);
 			_enemies[i]->SetDestination(cell);
 			_enemies[i]->clearPath();
 		}
-		_player->setPosition(_maze->cell2pix(rand_cell));
+		_player->setPosition(_normalLayer->cell2pix(rand_cell));
 	}
 
 	PlaceCoinInNewPosition();	
@@ -173,16 +187,16 @@ void PathFindingScene::PlaceCoinInNewPosition()
 {	
 	do
 	{
-		coinPosition = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
+		coinPosition = Vector2D((float)(rand() % _normalLayer->getNumCellX()), (float)(rand() % _normalLayer->getNumCellY()));
 	}
-	while (!_maze->isValidCell(coinPosition) ||
-		Vector2D::Distance(coinPosition, _maze->pix2cell(_player->getPosition()))<3);
+	while (!_normalLayer->isValidCell(coinPosition) ||
+		Vector2D::Distance(coinPosition, _normalLayer->pix2cell(_player->getPosition()))<3);
 		
 }
 
 bool PathFindingScene::DidPlayerTakeCoin() const
 {
-	return _player->getCurrentTargetIndex() == -1 && _maze->pix2cell(_player->getPosition()) == coinPosition;
+	return _player->getCurrentTargetIndex() == -1 && _normalLayer->pix2cell(_player->getPosition()) == coinPosition;
 }
 
 Vector2D PathFindingScene::CalculateRandomPosition() const
@@ -191,8 +205,8 @@ Vector2D PathFindingScene::CalculateRandomPosition() const
 	
 	do
 	{
-		rand_cell = Vector2D((float)(rand() % _maze->getNumCellX()), (float)(rand() % _maze->getNumCellY()));
-	} while (!_maze->isValidCell(rand_cell));
+		rand_cell = Vector2D((float)(rand() % _normalLayer->getNumCellX()), (float)(rand() % _normalLayer->getNumCellY()));
+	} while (!_normalLayer->isValidCell(rand_cell));
 
 	return rand_cell;
 }

@@ -18,10 +18,9 @@ Grid::Grid(char* filename)
 		while (std::getline(lineStream, cell, ','))
 			terrain_row.push_back(atoi(cell.c_str()));
 		SDL_assert(terrain_row.size() == num_cell_x);
-		_normalLayer.push_back(terrain_row);
-		_enemyLayer.push_back(terrain_row);
+		_terrain.push_back(terrain_row);
 	}
-	SDL_assert(_normalLayer.size() == num_cell_y);
+	SDL_assert(_terrain.size() == num_cell_y);
 	infile.close();
 }
 
@@ -29,24 +28,14 @@ Grid::~Grid()
 {
 }
 
-int Grid::getNumCellX()
+int Grid::getNumCellX() const
 {
 	return num_cell_x;
 }
 
-int Grid::getNumCellY()
+int Grid::getNumCellY() const
 {
 	return num_cell_y;
-}
-
-std::vector<std::vector<int>> Grid::GetNormalLayer()
-{
-	return _normalLayer;
-}
-
-std::vector<std::vector<int>> Grid::GetEnemyLayer()
-{
-	return _enemyLayer;
 }
 
 Vector2D Grid::cell2pix(Vector2D cell)
@@ -62,15 +51,20 @@ Vector2D Grid::pix2cell(Vector2D pix)
 
 bool Grid::isValidCell(Vector2D cell) const
 {
-	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= _normalLayer.size()) || (cell.x >= _normalLayer[0].size()))
+	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= _terrain.size()) || (cell.x >= _terrain[0].size()))
 		return false;
-	return !(_normalLayer[(unsigned int)cell.y][(unsigned int)cell.x] == 0);
+	return !(_terrain[(unsigned int)cell.y][(unsigned int)cell.x] == 0);
 }
 
 int Grid::GetCellWeight(Vector2D cell) const
 {
-	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= _normalLayer.size()) || (cell.x >= _normalLayer[0].size()))
+	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= _terrain.size()) || (cell.x >= _terrain[0].size()))
 		return false;
-	return _normalLayer[(unsigned int)cell.y][(unsigned int)cell.x];
+	return _terrain[(unsigned int)cell.y][(unsigned int)cell.x];
+}
+
+void Grid::SetCellWeight(Vector2D cell, int weight)
+{
+	_terrain[(unsigned int)cell.x][(unsigned int)cell.y] = weight;
 }
 
