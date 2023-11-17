@@ -1,8 +1,2 @@
 ﻿  Enemy.cpp
-  PathFindingScene.cpp
-C:\Users\AbelPujol\Documents\1r semestre\IA\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\AbelPujol\Documents\1r semestre\IA\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(163,20): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
-C:\Users\AbelPujol\Documents\1r semestre\IA\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(274): warning C4715: 'PathFindingScene::DidEnemyReachDestination': not all control paths return a value
   SDL_Pathfinding.vcxproj -> C:\Users\AbelPujol\Documents\1r semestre\IA\PathFinding\PathFinding\bin\SDL_Pathfinding.exe

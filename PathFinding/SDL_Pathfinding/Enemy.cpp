@@ -18,14 +18,16 @@ void Enemy::AgentUpdate(float dtime, SDL_Event* event, std::shared_ptr<Grid> maz
 {
     update(dtime, event);
     
+    std::cout << DidEnemyReachDestination(maze) << std::endl;
+
     if (DidEnemyReachDestination(maze))
     {        
-        _destination = CalculateRandomPosition(maze); 
+        _destination = maze->cell2pix(CalculateRandomPosition(maze));
         _currentPathFindingAlgorithm->CalculatePath(
             maze->pix2cell(_position),
-            _destination,
+            maze->pix2cell(_destination),
             *maze,
-            *path);			
+            *path);
     }
 }
 
@@ -42,7 +44,7 @@ Vector2D Enemy::CalculateRandomPosition(std::shared_ptr<Grid> maze) const
 }
 
 bool Enemy::DidEnemyReachDestination(std::shared_ptr<Grid> maze) const
-{
+{    
     return currentTargetIndex == -1 && maze->pix2cell(_position) == maze->pix2cell(_destination);
 }
 
@@ -59,12 +61,12 @@ Vector2D Enemy::GetDestination() const
 void Enemy::draw() const
 {
     // Path
-    /*for (int i = 0; i < (int)path->points.size(); i++)
+    for (int i = 0; i < (int)path->points.size(); i++)
     {
         draw_circle(TheApp::Instance()->getRenderer(), (int)(path->points[i].x), (int)(path->points[i].y), 15, 255, 255, 0, 255);
         if (i > 0)
             SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(path->points[i - 1].x), (int)(path->points[i - 1].y), (int)(path->points[i].x), (int)(path->points[i].y));
-    }*/
+    }
     
     if (draw_sprite)
     {

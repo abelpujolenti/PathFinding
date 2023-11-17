@@ -12,7 +12,7 @@
 #include "Enemy.h"
 #include "Player.h"
 
-#define NUMBER_ENEMIES 5
+#define NUMBER_ENEMIES 1
 
 class PathFindingScene : public Scene
 {	
