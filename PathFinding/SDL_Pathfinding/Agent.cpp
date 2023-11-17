@@ -12,7 +12,7 @@ Agent::Agent() : sprite_texture(0),
 	             sprite_w(0),
 	             sprite_h(0),
 	             draw_sprite(false),
-				 path(std::make_shared<Path>())
+				 _path(std::make_shared<Path>())
 {
 }
 
@@ -72,18 +72,63 @@ void Agent::setVelocity(Vector2D velocity)
 	_velocity = velocity;
 }
 
-void Agent::update(float dtime, SDL_Event *event)
+int Agent::getCurrentTargetIndex() const
 {
+	return currentTargetIndex;
+}
 
-	//cout << "agent update:" << endl;
+int Agent::getPathSize() const
+{
+	return _path->points.size();
+}
 
+Vector2D Agent::getPathPoint(int idx) const
+{
+	return _path->points[idx];
+}
+
+void Agent::clearPath()
+{
+	setCurrentTargetIndex(-1);
+	_path->points.clear();
+}
+
+void Agent::setCurrentTargetIndex(int idx)
+{
+	currentTargetIndex = idx;
+}
+
+bool Agent::loadSpriteTexture(char* filename, int _num_frames)
+{
+	if (_num_frames < 1) return false;
+
+	SDL_Surface *image = IMG_Load(filename);
+	if (!image) {
+		cout << "IMG_Load: " << IMG_GetError() << endl;
+		return false;
+	}
+	sprite_texture = SDL_CreateTextureFromSurface(TheApp::Instance()->getRenderer(), image);
+
+	sprite_num_frames = _num_frames;
+	sprite_w = image->w / sprite_num_frames;
+	sprite_h = image->h;
+	draw_sprite = true;
+
+	if (image)
+		SDL_FreeSurface(image);
+
+	return true;
+}
+
+void Agent::Move(float dtime, SDL_Event *event)
+{
 	switch (event->type) {
 		/* Keyboard & Mouse events */
-	case SDL_KEYDOWN:
-		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-		{
-			draw_sprite = !draw_sprite;
-		}			
+		case SDL_KEYDOWN:
+			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
+			{
+				draw_sprite = !draw_sprite;
+			}			
 		break;
 	default:
 		break;
@@ -116,52 +161,4 @@ void Agent::update(float dtime, SDL_Event *event)
 	{
 		_position.y = 0;
 	}
-}
-
-int Agent::getCurrentTargetIndex() const
-{
-	return currentTargetIndex;
-}
-
-int Agent::getPathSize() const
-{
-	return path->points.size();
-}
-
-Vector2D Agent::getPathPoint(int idx) const
-{
-	return path->points[idx];
-}
-
-void Agent::clearPath()
-{
-	setCurrentTargetIndex(-1);
-	path->points.clear();
-}
-
-void Agent::setCurrentTargetIndex(int idx)
-{
-	currentTargetIndex = idx;
-}
-
-bool Agent::loadSpriteTexture(char* filename, int _num_frames)
-{
-	if (_num_frames < 1) return false;
-
-	SDL_Surface *image = IMG_Load(filename);
-	if (!image) {
-		cout << "IMG_Load: " << IMG_GetError() << endl;
-		return false;
-	}
-	sprite_texture = SDL_CreateTextureFromSurface(TheApp::Instance()->getRenderer(), image);
-
-	sprite_num_frames = _num_frames;
-	sprite_w = image->w / sprite_num_frames;
-	sprite_h = image->h;
-	draw_sprite = true;
-
-	if (image)
-		SDL_FreeSurface(image);
-
-	return true;
 }

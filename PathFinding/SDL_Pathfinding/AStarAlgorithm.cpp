@@ -1,17 +1,5 @@
 ﻿#include "AStarAlgorithm.h"
 
-
-void AStarAlgorithm::Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, Grid& grid, Path& agentPath)
-{
-	while (path[yEnd][xEnd] > -1) {
-		//std::cout << xEnd << ", " << yEnd << std::endl;
-		int curr = path[yEnd][xEnd];
-		xEnd = curr % width;
-		yEnd = curr / width;
-		agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
-	}
-}
-
 float AStarAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
 	//manhattan

@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player()
-{
+Player::Player(int numberOfEnemies, Grid maze) : _recalculateOnChangingWeights(numberOfEnemies != 0)
+{    
     _currentPathFindingAlgorithm.reset(new BreadthFirstSearchAlgorithm);
     redValueCircle = 255;
     greenValueCircle = 255;
@@ -15,10 +15,10 @@ Player::~Player()
 {
 }
 
-void Player::AgentUpdate(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
+void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
 {
-    update(dtime, event);
-
+    Move(dtime, event);
+    
     switch (event->type) {
     case SDL_KEYDOWN:
         if (event->key.keysym.scancode == SDL_SCANCODE_1)
@@ -59,13 +59,19 @@ void Player::AgentUpdate(float dtime, SDL_Event* event, std::shared_ptr<Grid> ma
                 maze->pix2cell(_position),
                 maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
                 *maze,
-                *path
+                *_path
             );
         }
         break;
     default:
         break;
-    }  
+    }
+
+    if (!_recalculateOnChangingWeights)
+    {
+        return;
+    }
+    
 }
 
 void Player::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm)
@@ -99,11 +105,11 @@ void Player::RepositionPlayer(SDL_Event* event, std::shared_ptr<Grid> maze)
 void Player::draw() const
 {
     // Path
-    for (int i = 0; i < (int)path->points.size(); i++)
+    for (int i = 0; i < (int)_path->points.size(); i++)
     {
-        draw_circle(TheApp::Instance()->getRenderer(), (int)(path->points[i].x), (int)(path->points[i].y), 15, 255, 255, 0, 255);
+        draw_circle(TheApp::Instance()->getRenderer(), (int)(_path->points[i].x), (int)(_path->points[i].y), 15, 255, 255, 0, 255);
         if (i > 0)
-            SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(path->points[i - 1].x), (int)(path->points[i - 1].y), (int)(path->points[i].x), (int)(path->points[i].y));
+            SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(_path->points[i - 1].x), (int)(_path->points[i - 1].y), (int)(_path->points[i].x), (int)(_path->points[i].y));
     }
 
     if (draw_sprite)

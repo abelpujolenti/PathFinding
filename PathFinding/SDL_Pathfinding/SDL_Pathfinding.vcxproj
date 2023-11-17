@@ -143,7 +143,6 @@
     <ClCompile Include="PathFindingScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
-    <ClCompile Include="Seek.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,7 +161,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="PathFindingScene.h" />
     <ClInclude Include="SDL_SimpleApp.h" />
-    <ClInclude Include="Seek.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>

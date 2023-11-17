@@ -5,19 +5,19 @@
 PathFindingScene::PathFindingScene()
 {
 	draw_grid = false;
-	_maze = std::make_unique<Grid>(Grid("../res/maze.csv"));	
+	_maze = std::make_shared<Grid>(Grid("../res/maze.csv"));	
 	
 	loadTextures("../res/maze.png", "../res/coin.png");
 
 	srand((unsigned int)time(NULL));
 	
-	_player = std::make_shared<Player>();
+	_player = std::make_shared<Player>(NUMBER_ENEMIES, *_maze);
 
 	std::vector<std::shared_ptr<Enemy>> auxEnemies;
 	auxEnemies.reserve(NUMBER_ENEMIES);
 	for (int i = 0; i < NUMBER_ENEMIES; ++i)
 	{
-		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
+		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(*_maze);
 		auxEnemies.push_back(enemy);
 	}
 	_enemies = auxEnemies;
@@ -65,11 +65,11 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	std::weak_ptr<Grid> mazeWeakPointer = _maze;
 	if (std::shared_ptr<Grid> mazeLock = mazeWeakPointer.lock())
 	{		
-		_player->AgentUpdate(dtime, event, mazeLock);
+		_player->update(dtime, event, mazeLock);
 
 		for (int i = 0; i < _enemies.size(); ++i)
 		{
-			_enemies[i]->AgentUpdate(dtime, event, mazeLock);
+			_enemies[i]->update(dtime, event, mazeLock);
 		}	
 	}	
 

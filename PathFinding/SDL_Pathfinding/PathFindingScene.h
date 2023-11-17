@@ -7,12 +7,10 @@
 #include "Scene.h"
 #include "PathFollowing.h"
 #include "Grid.h"
-#include "CurrentAlgorithm.h"
-#include "PathFindingAlgorithm.h"
 #include "Enemy.h"
 #include "Player.h"
 
-#define NUMBER_ENEMIES 1
+#define NUMBER_ENEMIES 5
 
 class PathFindingScene : public Scene
 {	

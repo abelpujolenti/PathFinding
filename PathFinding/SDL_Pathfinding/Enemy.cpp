@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
-{
+Enemy::Enemy(Grid maze) : _normalLayer(maze.GetNormalLayer())
+{    
     _currentPathFindingAlgorithm.reset(new AStarAlgorithm);
     redValueCircle = 255;
     greenValueCircle = 0;
@@ -14,20 +14,18 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::AgentUpdate(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
+void Enemy::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
 {
-    update(dtime, event);
+    Move(dtime, event);
     
-    std::cout << DidEnemyReachDestination(maze) << std::endl;
-
-    if (DidEnemyReachDestination(maze))
+    if (DidReachDestination(maze))
     {        
         _destination = maze->cell2pix(CalculateRandomPosition(maze));
         _currentPathFindingAlgorithm->CalculatePath(
             maze->pix2cell(_position),
             maze->pix2cell(_destination),
             *maze,
-            *path);
+            *_path);
     }
 }
 
@@ -43,7 +41,7 @@ Vector2D Enemy::CalculateRandomPosition(std::shared_ptr<Grid> maze) const
     return rand_cell;
 }
 
-bool Enemy::DidEnemyReachDestination(std::shared_ptr<Grid> maze) const
+bool Enemy::DidReachDestination(std::shared_ptr<Grid> maze) const
 {    
     return currentTargetIndex == -1 && maze->pix2cell(_position) == maze->pix2cell(_destination);
 }
@@ -53,20 +51,8 @@ void Enemy::SetDestination(Vector2D destination)
     _destination = destination;
 }
 
-Vector2D Enemy::GetDestination() const
-{
-    return _destination;
-}
-
 void Enemy::draw() const
 {
-    // Path
-    for (int i = 0; i < (int)path->points.size(); i++)
-    {
-        draw_circle(TheApp::Instance()->getRenderer(), (int)(path->points[i].x), (int)(path->points[i].y), 15, 255, 255, 0, 255);
-        if (i > 0)
-            SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(path->points[i - 1].x), (int)(path->points[i - 1].y), (int)(path->points[i].x), (int)(path->points[i].y));
-    }
     
     if (draw_sprite)
     {

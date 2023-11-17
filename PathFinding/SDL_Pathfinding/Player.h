@@ -12,12 +12,16 @@ private:
     CurrentAlgorithm _nextAlgorithmTag;
 	
 	std::unique_ptr<PathFindingAlgorithm> _nextPathFindingAlgorithm;
+
+    bool _recalculateOnChangingWeights;
     
-public:
-    Player();
-    ~Player();
-    void AgentUpdate(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze) override;
     void OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm);
     void RepositionPlayer(SDL_Event* event, std::shared_ptr<Grid> maze);
+    
+public:
+    Player(int numberOfEnemies, Grid maze);
+    ~Player();
+    void update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze) override;
     void draw() const override;
+    
 };

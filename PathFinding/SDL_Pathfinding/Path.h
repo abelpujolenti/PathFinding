@@ -5,6 +5,7 @@
 struct Path
 {
 	std::vector<Vector2D> points;
+	std::vector<int> weights;
 	static const int ARRIVAL_DISTANCE = 35;
 
 	void addPathPoint(Vector2D point)

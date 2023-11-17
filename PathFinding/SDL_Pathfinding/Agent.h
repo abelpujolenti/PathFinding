@@ -5,8 +5,6 @@
 #include <SDL_image.h>
 
 #include "SDL_SimpleApp.h"
-#include "Path.h"
-#include "PathFindingAlgorithm.h"
 #include "utils.h"
 #include "AStarAlgorithm.h"
 #include "BreadthFirstSearchAlgorithm.h"
@@ -36,7 +34,7 @@ protected:
 	Vector2D _target;
 
 	// Pathfinding
-	std::shared_ptr<Path> path;
+	std::shared_ptr<Path> _path;
 	int currentTargetIndex;
 
 	float mass;
@@ -53,6 +51,10 @@ protected:
 	int greenValueCircle;
 	int blueValueCircle;
 	
+	void setBehavior(SteeringBehavior* steeringBehavior);
+	bool loadSpriteTexture(char* filename, int num_frames=1);
+	void Move(float dtime, SDL_Event *event);
+	
 public:
 	Agent();
 	~Agent();
@@ -65,15 +67,12 @@ public:
 	float getMaxVelocity() const;
 	float getMaxForce() const;
 	float getMass() const;
-	void setBehavior(SteeringBehavior* steeringBehavior);
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
 	void setCurrentTargetIndex(int idx);
 	void clearPath();
-	void update(float dtime, SDL_Event *event);
-	virtual void AgentUpdate(float dtime, SDL_Event *event, std::shared_ptr<Grid> maze) = 0;
+	virtual void update(float dtime, SDL_Event *event, std::shared_ptr<Grid> maze) = 0;
 	virtual void draw() const = 0;
-	bool loadSpriteTexture(char* filename, int num_frames=1);
 	
 };

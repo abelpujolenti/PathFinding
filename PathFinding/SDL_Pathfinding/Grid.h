@@ -15,7 +15,8 @@ private:
 	int num_cell_x;
 	int num_cell_y;
 
-	std::vector< std::vector<int> > terrain;
+	std::vector<std::vector<int>> _normalLayer;
+	std::vector<std::vector<int>> _enemyLayer;
 
 public:
 	
@@ -23,8 +24,10 @@ public:
 	~Grid();
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D pix);
-	bool isValidCell(Vector2D cell);
-	int GetCellWeight(Vector2D cell);
+	bool isValidCell(Vector2D cell) const;
+	int GetCellWeight(Vector2D cell) const;
 	int getNumCellX();
 	int getNumCellY();
+	std::vector<std::vector<int>> GetNormalLayer();
+	std::vector<std::vector<int>> GetEnemyLayer();
 };
