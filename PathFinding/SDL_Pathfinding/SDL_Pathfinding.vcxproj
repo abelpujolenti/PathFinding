@@ -139,6 +139,7 @@
     <ClCompile Include="GreedyBestFirstSearchAlgorithm.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PathFindingAlgorithm.cpp" />
     <ClCompile Include="PathFollowing.cpp" />
     <ClCompile Include="PathFindingScene.cpp" />
     <ClCompile Include="Player.cpp" />

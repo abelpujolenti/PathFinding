@@ -1,8 +1,16 @@
 #include "Player.h"
 
-Player::Player(int numberOfEnemies, const std::shared_ptr<Grid>& enemyLayer) : Agent(enemyLayer)
-, _recalculateOnChangingWeights(numberOfEnemies != 0)
-{    
+#include "AStarAlgorithm.h"
+#include "BreadthFirstSearchAlgorithm.h"
+#include "DijkstraAlgorithm.h"
+#include "GreedyBestFirstSearchAlgorithm.h"
+#include "PathFollowing.h"
+#include "Grid.h"
+#include "Path.h"
+
+Player::Player(int numberOfEnemies) : _recalculateOnChangingWeights(numberOfEnemies != 0)
+{
+    num = 1;
     _currentPathFindingAlgorithm.reset(new BreadthFirstSearchAlgorithm);
     redValueCircle = 255;
     greenValueCircle = 255;
@@ -12,13 +20,9 @@ Player::Player(int numberOfEnemies, const std::shared_ptr<Grid>& enemyLayer) : A
     
 }
 
-Player::~Player()
+void Player::update(float dtime, SDL_Event* event, const Grid& layer)
 {
-}
-
-void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
-{
-    Move(dtime, event);
+    Agent::update(dtime, event, layer);
     
     switch (event->type) {
     case SDL_KEYDOWN:
@@ -43,8 +47,8 @@ void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
         if (event->button.button == SDL_BUTTON_LEFT)
         {
             if (currentTargetIndex == -1)
-            {
-                RepositionPlayer(event, maze);				
+            {                
+                RepositionPlayer(event, layer);				
             }
         }
         if (event->button.button == SDL_BUTTON_RIGHT)
@@ -55,24 +59,46 @@ void Player::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
             //Remember, function Add Path Point from Agent receive only one Vector2D
 
             //////////////////////////////////////////////////
-			
-            _currentPathFindingAlgorithm->CalculatePath(
-                maze->pix2cell(_position),
-                maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y))),
-                *_enemyLayer,
-                *_path
-            );
+            ///
+
+            _destination = Vector2D((float)(event->button.x), (float)(event->button.y));
+            if (layer.GetCellWeight(layer.pix2cell(_destination)) != 0)
+            {
+                clearPath();
+                currentTargetIndex = -1;
+                LoadPath(layer);
+            }
+            
         }
         break;
     default:
         break;
     }
-
-    /*if (!_recalculateOnChangingWeights)
+    
+    if (_currentCell == layer.pix2cell(_position))
     {
         return;
-    }*/
-    
+    }
+    if (_currentAlgorithmTag == CurrentAlgorithm::BFS || _currentAlgorithmTag == CurrentAlgorithm::Greedy)
+    {
+        return;
+    }
+    if (!_recalculateOnChangingWeights)
+    {
+        return;
+    }
+    std::vector<Vector2D> points = _path->points;
+    for (int i = 0; i < points.size(); ++i)
+    {        
+        if (layer.GetCellWeight(Vector2D(layer.pix2cell(Vector2D(points[i].x, points[i].y)))) == _path->weights[i])
+        {
+            continue;
+        }
+        clearPath();
+        currentTargetIndex = -1;
+        LoadPath(layer);
+        break;
+    }
 }
 
 void Player::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm)
@@ -94,12 +120,13 @@ void Player::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindin
     }
 }
 
-void Player::RepositionPlayer(SDL_Event* event, std::shared_ptr<Grid> maze)
+void Player::RepositionPlayer(SDL_Event* event, const Grid& layer)
 {	
-    Vector2D cell = maze->pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
-    if (maze->isValidCell(cell)) {
+    Vector2D cell = layer.pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
+    if (layer.isValidCell(cell)) {
         clearPath();
-        setPosition(maze->cell2pix(cell));
+        _position = layer.cell2pix(cell);
+        _currentCell = cell;
     }
 }
 

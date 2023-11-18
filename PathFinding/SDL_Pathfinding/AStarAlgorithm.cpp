@@ -1,5 +1,10 @@
 ﻿#include "AStarAlgorithm.h"
 
+#include <queue>
+#include "Vector2D.h"
+#include "Grid.h"
+#include "Path.h"
+
 float AStarAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
 	//manhattan
@@ -17,7 +22,7 @@ float AStarAlgorithm::Heuristic(float g, float h, float a, float b)
 	return g * a + h * b;
 }
 
-void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
+void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -38,7 +43,7 @@ void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Pat
 		frontier.pop();
 
 		if (currX == xEnd && currY == yEnd) {
-			std::cout << costSoFar[yEnd][xEnd] << std::endl;
+			//std::cout << costSoFar[yEnd][xEnd] << std::endl;
 			Backtrack(xEnd, yEnd, width, path, grid, agentPath);
 			break;
 		}

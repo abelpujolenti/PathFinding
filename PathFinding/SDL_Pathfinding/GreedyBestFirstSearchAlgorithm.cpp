@@ -1,5 +1,10 @@
 ﻿#include "GreedyBestFirstSearchAlgorithm.h"
 
+#include <queue>
+#include "Vector2D.h"
+#include "Grid.h"
+#include "Path.h"
+
 float GreedyBestFirstSearchAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
 	//manhattan
@@ -8,7 +13,7 @@ float GreedyBestFirstSearchAlgorithm::Distance(Vector2D start, Vector2D goal)
 	return (dx + dy);
 }
 
-void GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
+void GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();

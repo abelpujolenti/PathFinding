@@ -1,40 +1,31 @@
 #include "PathFindingScene.h"
 
 #include <utility>
+#include <fstream>
+#include <time.h>
 
-PathFindingScene::PathFindingScene()
+#include "Enemy.h"
+#include "Grid.h"
+#include "Player.h"
+
+PathFindingScene::PathFindingScene() :
+	_normalLayer{std::make_unique<Grid>(PATH_MAZE_CSV)},
+	_enemyLayer{std::make_shared<Grid>(PATH_MAZE_CSV)}
 {
-	draw_grid = false;
-	_normalLayer = std::make_shared<Grid>(Grid("../res/maze.csv"));
-	_enemyLayer = std::make_shared<Grid>(Grid("../res/maze.csv"));
-
-	
-
-	int x = _enemyLayer->getNumCellX();
-	int y = _enemyLayer->getNumCellY();
-
-	for (int i = 0; i < x; ++i)
-	{
-		for (int j = 0; j < y; ++j)
-		{
-			_enemyLayer->SetCellWeight(Vector2D(j, i), 3);
-		}
-	}
-	
-	loadTextures("../res/maze.png", "../res/coin.png");
+	loadTextures(PATH_MAZE_PNG, PATH_COIN);
 
 	srand((unsigned int)time(NULL));
 	
-	_player = std::make_shared<Player>(NUMBER_ENEMIES, _enemyLayer);
+	_player = std::make_unique<Player>(NUMBER_ENEMIES);
 
-	std::vector<std::shared_ptr<Enemy>> auxEnemies;
+	std::vector<std::unique_ptr<Enemy>> auxEnemies;
 	auxEnemies.reserve(NUMBER_ENEMIES);
 	for (int i = 0; i < NUMBER_ENEMIES; ++i)
 	{
-		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(_enemyLayer, _normalLayer);
-		auxEnemies.push_back(enemy);
+		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(_enemyLayer);
+		auxEnemies.push_back(std::move(enemy));
 	}
-	_enemies = auxEnemies;
+	_enemies = std::move(auxEnemies);
 
 	InitializeSceneComponents();
 }
@@ -76,16 +67,12 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 			break;
 	}
 
-	const std::weak_ptr<Grid> mazeWeakPointer = _normalLayer;
-	if (const std::shared_ptr<Grid> mazeLock = mazeWeakPointer.lock())
-	{		
-		_player->update(dtime, event, mazeLock);
-
-		for (int i = 0; i < _enemies.size(); ++i)
-		{
-			_enemies[i]->update(dtime, event, mazeLock);
-		}	
+	for (int i = 0; i < _enemies.size(); ++i)
+	{
+		_enemies[i]->update(dtime, event, *_normalLayer);
 	}	
+
+	_player->update(dtime, event, *_enemyLayer);
 
 	// if we have arrived to the coin, replace it in a random cell!
 	if (DidPlayerTakeCoin())
@@ -165,6 +152,8 @@ void PathFindingScene::InitializeSceneComponents()
 {		
 	Vector2D rand_cell;
 	constexpr int totalAgents = NUMBER_ENEMIES + 1;
+
+	//ResetEnemyLayer();
 	
 	for (int i = 0; i < totalAgents; i++)
 	{
@@ -175,22 +164,31 @@ void PathFindingScene::InitializeSceneComponents()
 			const Vector2D cell = _normalLayer->cell2pix(rand_cell);			
 			_enemies[i]->setPosition(cell);
 			_enemies[i]->SetDestination(cell);
+			_enemies[i]->SetCurrentCell(rand_cell);
 			_enemies[i]->clearPath();
 		}
 		_player->setPosition(_normalLayer->cell2pix(rand_cell));
+		_player->SetCurrentCell(rand_cell);
 	}
 
 	PlaceCoinInNewPosition();	
 }
 
+void PathFindingScene::ResetEnemyLayer() const
+{
+	*_enemyLayer = Grid{PATH_MAZE_CSV};
+}
+
 void PathFindingScene::PlaceCoinInNewPosition()
-{	
+{
+	std::cout << "Holi" << std::endl;
 	do
 	{
 		coinPosition = Vector2D((float)(rand() % _normalLayer->getNumCellX()), (float)(rand() % _normalLayer->getNumCellY()));
 	}
 	while (!_normalLayer->isValidCell(coinPosition) ||
 		Vector2D::Distance(coinPosition, _normalLayer->pix2cell(_player->getPosition()))<3);
+	std::cout << coinPosition.x << " " << coinPosition.y << std::endl;
 		
 }
 
@@ -211,7 +209,7 @@ Vector2D PathFindingScene::CalculateRandomPosition() const
 	return rand_cell;
 }
 
-bool PathFindingScene::loadTextures(char* filename_bg, char* filename_coin)
+bool PathFindingScene::loadTextures(const char* filename_bg, const char* filename_coin)
 {
 	SDL_Surface *image = IMG_Load(filename_bg);
 	if (!image) {

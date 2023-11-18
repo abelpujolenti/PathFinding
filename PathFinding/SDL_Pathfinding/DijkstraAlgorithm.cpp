@@ -1,6 +1,11 @@
 ﻿#include "DijkstraAlgorithm.h"
 
-void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
+#include <queue>
+#include "Vector2D.h"
+#include "Grid.h"
+#include "Path.h"
+
+void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -21,7 +26,7 @@ void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, 
 		frontier.pop();
 
 		if (currX == xEnd && currY == yEnd) {
-			std::cout << costSoFar[yEnd][xEnd] << std::endl;
+			//std::cout << costSoFar[yEnd][xEnd] << std::endl;
 			Backtrack(xEnd, yEnd, width, path, grid, agentPath);
 			break;
 		}

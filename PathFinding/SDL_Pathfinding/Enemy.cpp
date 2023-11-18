@@ -1,49 +1,61 @@
 #include "Enemy.h"
 
-Enemy::Enemy(const std::shared_ptr<Grid>& enemyLayer, const std::shared_ptr<Grid>& normalLayer) : Agent(enemyLayer), _normalLayer(normalLayer)
+#include "AStarAlgorithm.h"
+#include "PathFollowing.h"
+#include "Grid.h"
+#include "Path.h"
+
+Enemy::Enemy(const std::shared_ptr<Grid>& enemyLayer) : _enemyLayer(enemyLayer)
 {    
     _currentPathFindingAlgorithm.reset(new AStarAlgorithm);
     redValueCircle = 255;
     greenValueCircle = 0;
     blueValueCircle = 0;
     loadSpriteTexture("../res/zombie1.png", 8);
-    setBehavior(new PathFollowing); 
+    setBehavior(new PathFollowing);
+
+    SetCellsToModify();
+    SetWeights();    
 }
 
 Enemy::~Enemy()
 {
 }
 
-void Enemy::update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze)
+void Enemy::update(float dtime, SDL_Event* event, const Grid& layer)
 {
-    Move(dtime, event);
+    Agent::update(dtime, event, layer);
+
+    Vector2D position = layer.pix2cell(_position);
+
+    if (_currentCell != position)
+    {               
+        ModifyLayerWeights(position);
+        _currentCell = position;        
+    }
     
-    if (DidReachDestination(maze))
-    {        
-        _destination = maze->cell2pix(CalculateRandomPosition(maze));
-        _currentPathFindingAlgorithm->CalculatePath(
-            maze->pix2cell(_position),
-            maze->pix2cell(_destination),
-            *_normalLayer,
-            *_path);
+    if (DidReachDestination(layer))
+    {
+        _destination = layer.cell2pix(CalculateRandomPosition(layer));
+        LoadPath(layer);
     }
 }
 
-Vector2D Enemy::CalculateRandomPosition(std::shared_ptr<Grid> maze) const
+Vector2D Enemy::CalculateRandomPosition(const Grid& layer) const
 {	
     Vector2D rand_cell;
 	
     do
     {
-        rand_cell = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
-    } while (!maze->isValidCell(rand_cell));
+        rand_cell = Vector2D((float)(rand() % layer.getNumCellX()), (float)(rand() % layer.getNumCellY()));
+    } while (!layer.isValidCell(rand_cell));
 
     return rand_cell;
 }
 
-bool Enemy::DidReachDestination(std::shared_ptr<Grid> maze) const
+bool Enemy::DidReachDestination(const Grid& layer) const
 {    
-    return currentTargetIndex == -1 && maze->pix2cell(_position) == maze->pix2cell(_destination);
+    return currentTargetIndex == -1 && layer.pix2cell(_position) == layer.pix2cell(_destination);
 }
 
 void Enemy::SetDestination(Vector2D destination)
@@ -51,9 +63,111 @@ void Enemy::SetDestination(Vector2D destination)
     _destination = destination;
 }
 
-void Enemy::ModifyLayerWeights()
+void Enemy::SetCurrentCell(Vector2D currentCell)
 {
+    Agent::SetCurrentCell(currentCell);
     
+    AddWeights(_currentCell);
+}
+
+void Enemy::AddWeights(Vector2D position) const
+{    
+    for (int i = 0; i < _cellsModified.size(); ++i)
+    {
+        Vector2D cellDesired = position + _cellsModified[i];
+
+        if (cellDesired.x >= 0 && cellDesired.x <= _enemyLayer->getNumCellX() &&
+            cellDesired.y >= 0 && cellDesired.y <= _enemyLayer->getNumCellY())
+        {
+            const int currentCellWeight = _enemyLayer->GetCellWeight(cellDesired);
+            
+            if (currentCellWeight != 0)
+            {
+                _enemyLayer->ModifyCellWeight(cellDesired, _weightsAddToCells[i]);    
+            }                
+        }    
+    }
+}
+
+void Enemy::ModifyLayerWeights(Vector2D position)
+{
+    for (int i = 0; i < _cellsModified.size(); ++i)
+    {
+        Vector2D cellDesired = _currentCell + _cellsModified[i];
+        if (cellDesired.x > 0 && cellDesired.x < _enemyLayer->getNumCellX() &&
+            cellDesired.y > 0 && cellDesired.y < _enemyLayer->getNumCellY())
+        {
+            const int currentCellWeight = _enemyLayer->GetCellWeight(cellDesired);
+            
+            if (currentCellWeight != 0)
+            {
+                _enemyLayer->ModifyCellWeight(cellDesired, -_weightsAddToCells[i]);    
+            }                
+        }       
+    }
+
+    AddWeights(position);
+}
+
+void Enemy::SetCellsToModify()
+{
+    _cellsModified.reserve(TOTAL_CELLS_TO_MODIFY);
+
+    //THIRD RING
+    _cellsModified.push_back(Vector2D(-3, 0));
+    _cellsModified.push_back(Vector2D(-2, 1));
+    _cellsModified.push_back(Vector2D(-1, 2));
+    _cellsModified.push_back(Vector2D(0, 3));
+    _cellsModified.push_back(Vector2D(1, 2));
+    _cellsModified.push_back(Vector2D(2, 1));
+    _cellsModified.push_back(Vector2D(3, 0));
+    _cellsModified.push_back(Vector2D(2, -1));
+    _cellsModified.push_back(Vector2D(1, -2));
+    _cellsModified.push_back(Vector2D(0, -3));
+    _cellsModified.push_back(Vector2D(-1, -2));
+    _cellsModified.push_back(Vector2D(-2, -1));
+
+    //SECOND RING
+    _cellsModified.push_back(Vector2D(-2, 0));
+    _cellsModified.push_back(Vector2D(-1, 1));
+    _cellsModified.push_back(Vector2D(0, 2));
+    _cellsModified.push_back(Vector2D(1, 1));
+    _cellsModified.push_back(Vector2D(2, 0));
+    _cellsModified.push_back(Vector2D(1, -1));
+    _cellsModified.push_back(Vector2D(0, -2));
+    _cellsModified.push_back(Vector2D(-1, -1));
+
+    //FIRST RING
+    _cellsModified.push_back(Vector2D(-1, 0));
+    _cellsModified.push_back(Vector2D(0, 1));
+    _cellsModified.push_back(Vector2D(1, 0));
+    _cellsModified.push_back(Vector2D(0, -1));
+
+    //CENTER
+    _cellsModified.push_back(Vector2D(0, 0));
+    
+}
+
+void Enemy::SetWeights()
+{
+    _weightsAddToCells.reserve(TOTAL_CELLS_TO_MODIFY);
+    
+    for (int i = 0; i < THIRD_RING_LENGTH; ++i)
+    {
+        _weightsAddToCells.push_back(THIRD_RING_WEIGHT);
+    }
+    
+    for (int i = 0; i < SECOND_RING_LENGTH; ++i)
+    {
+        _weightsAddToCells.push_back(SECOND_RING_WEIGHT);
+    }
+
+    for (int i = 0; i < FIRST_RING_LENGTH; ++i)
+    {
+        _weightsAddToCells.push_back(FIRST_RING_WEIGHT);
+    }
+
+    _weightsAddToCells.push_back(CENTER_WEIGHT);
 }
 
 void Enemy::draw() const

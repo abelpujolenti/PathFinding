@@ -1,7 +1,10 @@
 #include "PathFollowing.h"
 
+#include "Path.h"
+
 PathFollowing::PathFollowing()
 {
+	num = 0;
 }
 
 PathFollowing::~PathFollowing()
@@ -17,21 +20,25 @@ void PathFollowing::applySteeringForce(Agent *agent, float dtime)
 	//We are in the middle of a path
 	if (agent->getCurrentTargetIndex() >= 0)
 	{
+		
 		float dist = Vector2D::Distance(agent->getPosition(), agent->getPathPoint(agent->getCurrentTargetIndex()));
 		// We 've reached the current target
 		if (dist < Path::ARRIVAL_DISTANCE)
 		{
+			
 			// Current target is path's last point?
 			if (agent->getCurrentTargetIndex() == agent->getPathSize() - 1)
 			{
 				if (dist < 3) // We've reached the end of the path
 				{
+					
 					agent->clearPath();
 					agent->setVelocity(Vector2D(0, 0));
 					return;
 				}
 				else
 				{
+					
 					// Arrive to current target
 					float slow_factor = (agent->getTarget() - agent->getPosition()).Length() / Path::ARRIVAL_DISTANCE;
 

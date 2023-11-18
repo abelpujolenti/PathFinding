@@ -2,8 +2,6 @@
 #include "Agent.h"
 #include "CurrentAlgorithm.h"
 
-#include "PathFollowing.h"
-
 class Player : public Agent
 {
 private:
@@ -16,12 +14,11 @@ private:
     bool _recalculateOnChangingWeights;
     
     void OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm);
-    void RepositionPlayer(SDL_Event* event, std::shared_ptr<Grid> maze);
+    void RepositionPlayer(SDL_Event* event, const Grid& layer);
     
 public:
-    Player(int numberOfEnemies, const std::shared_ptr<Grid>& enemyLayer);
-    ~Player();
-    void update(float dtime, SDL_Event* event, std::shared_ptr<Grid> maze) override;
+    Player(int numberOfEnemies);    
+    void update(float dtime, SDL_Event* event, const Grid& layer) override;
     void draw() const override;
     
 };

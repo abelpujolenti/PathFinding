@@ -4,13 +4,13 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "CurrentAlgorithm.h"
 #include "SDL_SimpleApp.h"
 #include "utils.h"
-#include "AStarAlgorithm.h"
-#include "BreadthFirstSearchAlgorithm.h"
-#include "DijkstraAlgorithm.h"
-#include "GreedyBestFirstSearchAlgorithm.h"
 
+class PathFindingAlgorithm;
+class Path;
+class Grid;
 
 class Agent
 {
@@ -26,18 +26,19 @@ public:
 	
 protected:
 
-	std::shared_ptr<Grid> _enemyLayer;
-
 	std::unique_ptr<PathFindingAlgorithm> _currentPathFindingAlgorithm;
 	
 	std::unique_ptr<SteeringBehavior> _steeringBehavior;
+
+	Vector2D _currentCell;
+	Vector2D _destination;
 	
 	Vector2D _position;
 	Vector2D _velocity;
 	Vector2D _target;
 
 	// Pathfinding
-	std::shared_ptr<Path> _path;
+	std::unique_ptr<Path> _path;
 	int currentTargetIndex;
 
 	float mass;
@@ -56,11 +57,11 @@ protected:
 	
 	void setBehavior(SteeringBehavior* steeringBehavior);
 	bool loadSpriteTexture(char* filename, int num_frames=1);
-	void Move(float dtime, SDL_Event *event);
+	void LoadPath(const Grid& layer) const;
 	
 public:
-	Agent(const std::shared_ptr<Grid>& enemyLayer);
-	~Agent();
+	Agent();
+	virtual ~Agent();
 	Vector2D getPosition() const;
 	Vector2D getTarget() const;
 	Vector2D getVelocity() const;
@@ -71,11 +72,16 @@ public:
 	float getMaxForce() const;
 	float getMass() const;
 	void setPosition(Vector2D position);
+	virtual void SetCurrentCell(Vector2D currentCell);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
 	void setCurrentTargetIndex(int idx);
 	void clearPath();
-	virtual void update(float dtime, SDL_Event *event, std::shared_ptr<Grid> maze) = 0;
+	virtual void update(float dtime, SDL_Event *event, const Grid& layer);
 	virtual void draw() const = 0;
+
+	
+	int num;
+	
 	
 };

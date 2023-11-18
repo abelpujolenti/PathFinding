@@ -1,6 +1,11 @@
 ﻿#include "BreadthFirstSearchAlgorithm.h"
 
-void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Grid& grid, Path& agentPath)
+#include <queue>
+#include "Vector2D.h"
+#include "Grid.h"
+#include "Path.h"
+
+void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
@@ -23,7 +28,7 @@ void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, Gr
 				int curr = path[yEnd][xEnd];
 				xEnd = curr % width;
 				yEnd = curr / width;
-				agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))));
+				agentPath.addPathPoint(Vector2D(grid.cell2pix(Vector2D(xEnd, yEnd))), grid.GetCellWeight(Vector2D(xEnd, yEnd)));
 			}
 			break;
 		}

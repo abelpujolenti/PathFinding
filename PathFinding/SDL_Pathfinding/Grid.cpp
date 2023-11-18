@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Grid::Grid(char* filename)
+Grid::Grid(const char* filename)
 {
 	num_cell_x = SRC_WIDTH / CELL_SIZE;
 	num_cell_y = SRC_HEIGHT / CELL_SIZE;
@@ -12,7 +12,7 @@ Grid::Grid(char* filename)
 	std::string line;
 	while (std::getline(infile, line))
 	{
-		vector<int> terrain_row;
+		vector<float> terrain_row;
 		std::stringstream lineStream(line);
 		std::string cell;
 		while (std::getline(lineStream, cell, ','))
@@ -38,13 +38,13 @@ int Grid::getNumCellY() const
 	return num_cell_y;
 }
 
-Vector2D Grid::cell2pix(Vector2D cell)
+Vector2D Grid::cell2pix(Vector2D cell) const
 {
 	int offset = CELL_SIZE / 2;
 	return Vector2D(cell.x*CELL_SIZE + offset, cell.y*CELL_SIZE + offset);
 }
 
-Vector2D Grid::pix2cell(Vector2D pix)
+Vector2D Grid::pix2cell(Vector2D pix) const
 {
 	return Vector2D((float)((int)pix.x / CELL_SIZE), (float)((int)pix.y / CELL_SIZE));
 }
@@ -56,15 +56,15 @@ bool Grid::isValidCell(Vector2D cell) const
 	return !(_terrain[(unsigned int)cell.y][(unsigned int)cell.x] == 0);
 }
 
-int Grid::GetCellWeight(Vector2D cell) const
+float Grid::GetCellWeight(Vector2D cell) const
 {
 	if ((cell.x < 0) || (cell.y < 0) || (cell.y >= _terrain.size()) || (cell.x >= _terrain[0].size()))
 		return false;
 	return _terrain[(unsigned int)cell.y][(unsigned int)cell.x];
 }
 
-void Grid::SetCellWeight(Vector2D cell, int weight)
+void Grid::ModifyCellWeight(Vector2D cell, float weight)
 {
-	_terrain[(unsigned int)cell.x][(unsigned int)cell.y] = weight;
+	_terrain[(unsigned int)cell.y][(unsigned int)cell.x] += weight;
 }
 

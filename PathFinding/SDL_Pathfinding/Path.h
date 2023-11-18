@@ -8,7 +8,7 @@ struct Path
 	std::vector<int> weights;
 	static const int ARRIVAL_DISTANCE = 35;
 
-	void addPathPoint(Vector2D point)
+	void addPathPoint(Vector2D point, int weight)
 	{
 		if (!points.empty())
 		{
@@ -20,5 +20,6 @@ struct Path
 		
 
 		points.push_back(point);
+		weights.push_back(weight);
 	}
 };

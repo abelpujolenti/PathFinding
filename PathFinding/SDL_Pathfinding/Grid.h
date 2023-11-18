@@ -15,16 +15,16 @@ private:
 	int num_cell_x;
 	int num_cell_y;
 
-	std::vector<std::vector<int>> _terrain;
+	std::vector<std::vector<float>> _terrain;
 
 public:
-	Grid(char* filename);
+	Grid(const char* filename);
 	~Grid();
-	Vector2D cell2pix(Vector2D cell);
-	Vector2D pix2cell(Vector2D pix);
+	Vector2D cell2pix(Vector2D cell) const;
+	Vector2D pix2cell(Vector2D pix) const;
 	bool isValidCell(Vector2D cell) const;
-	int GetCellWeight(Vector2D cell) const;
-	void SetCellWeight(Vector2D cell, int weight);
+	float GetCellWeight(Vector2D cell) const;
+	void ModifyCellWeight(Vector2D cell, float weight);
 	int getNumCellX() const;
 	int getNumCellY() const;
 };

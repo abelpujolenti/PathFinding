@@ -1,16 +1,19 @@
 #pragma once
+#include <memory>
 #include <vector>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <time.h>
 #include "Scene.h"
-#include "PathFollowing.h"
-#include "Grid.h"
-#include "Enemy.h"
-#include "Player.h"
+#include "Vector2D.h"
 
-#define NUMBER_ENEMIES 5
+
+#define NUMBER_ENEMIES 2
+#define PATH_MAZE_CSV "../res/maze.csv"
+#define PATH_MAZE_PNG "../res/maze.png"
+#define PATH_COIN "../res/coin.png"
+
+class Grid;
+class Player;
+class Enemy;
+class PathFollowing;
 
 class PathFindingScene : public Scene
 {	
@@ -19,22 +22,23 @@ private:
 	SDL_Texture *background_texture;
 	SDL_Texture *coin_texture;
 	
-	std::shared_ptr<Player> _player;
+	std::unique_ptr<Player> _player;
 
-	std::vector<std::shared_ptr<Enemy>> _enemies;
+	std::vector<std::unique_ptr<Enemy>> _enemies;
 
-	std::shared_ptr<Grid> _normalLayer;
+	std::unique_ptr<Grid> _normalLayer;
 	std::shared_ptr<Grid> _enemyLayer;
 
 	Vector2D coinPosition;
 
 	bool draw_grid;
 
-	bool loadTextures(char* filename_bg, char* filename_coin);
+	bool loadTextures(const char* filename_bg, const char* filename_coin);
 	
 	void drawMaze() const;
 	void drawCoin() const;
 	void InitializeSceneComponents();
+	void ResetEnemyLayer() const;
 	void PlaceCoinInNewPosition();
 	bool DidPlayerTakeCoin() const;
 	Vector2D CalculateRandomPosition() const;
