@@ -61,13 +61,7 @@ void Player::update(float dtime, SDL_Event* event, const Grid& layer)
             //////////////////////////////////////////////////
             ///
 
-            _destination = Vector2D((float)(event->button.x), (float)(event->button.y));
-            if (layer.GetCellWeight(layer.pix2cell(_destination)) != 0)
-            {
-                clearPath();
-                currentTargetIndex = -1;
-                LoadPath(layer);
-            }
+            PathTowardsPosition(Vector2D((float)(event->button.x), (float)(event->button.y)), layer);
             
         }
         break;
@@ -127,6 +121,17 @@ void Player::RepositionPlayer(SDL_Event* event, const Grid& layer)
         clearPath();
         _position = layer.cell2pix(cell);
         _currentCell = cell;
+    }
+}
+
+void Player::PathTowardsPosition(Vector2D position, const Grid& layer)
+{
+    _destination = position;
+    if (layer.GetCellWeight(layer.pix2cell(_destination)) != 0)
+    {
+        clearPath();
+        currentTargetIndex = -1;
+        LoadPath(layer);
     }
 }
 

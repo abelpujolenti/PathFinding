@@ -5,7 +5,7 @@
 #include "Vector2D.h"
 
 
-#define NUMBER_ENEMIES 2
+#define NUMBER_ENEMIES 0
 #define PATH_MAZE_CSV "../res/maze.csv"
 #define PATH_MAZE_PNG "../res/maze.png"
 #define PATH_COIN "../res/coin.png"
@@ -30,6 +30,11 @@ private:
 	std::shared_ptr<Grid> _enemyLayer;
 
 	Vector2D coinPosition;
+	std::vector<Vector2D> predefinedCoinSpots;
+	Vector2D predefinedPlayerStart;
+	int predefinedCoinSpotIndex;
+
+	bool autoMode = false;
 
 	bool draw_grid;
 
@@ -42,6 +47,9 @@ private:
 	void PlaceCoinInNewPosition();
 	bool DidPlayerTakeCoin() const;
 	Vector2D CalculateRandomPosition() const;
+	void GeneratePredefinedSpots();
+	void ToggleAutoMode();
+	void SetNextPredefinedCoinPosition();
 	
 public:
 	PathFindingScene();

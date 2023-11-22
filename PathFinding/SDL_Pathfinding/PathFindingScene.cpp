@@ -3,6 +3,7 @@
 #include <utility>
 #include <fstream>
 #include <time.h>
+#include <iostream>
 
 #include "Enemy.h"
 #include "Grid.h"
@@ -58,6 +59,8 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 						InitializeSceneComponents();
 					}
 					break;
+				case SDL_SCANCODE_A:
+					ToggleAutoMode();
 				default:
 					break;
 			}			
@@ -77,7 +80,14 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	// if we have arrived to the coin, replace it in a random cell!
 	if (DidPlayerTakeCoin())
 	{
-		PlaceCoinInNewPosition();
+		if (autoMode)
+		{
+			SetNextPredefinedCoinPosition();
+		}
+		else
+		{
+			PlaceCoinInNewPosition();
+		}
 	}
 	
 }
@@ -150,6 +160,7 @@ void PathFindingScene::drawCoin() const
 
 void PathFindingScene::InitializeSceneComponents()
 {		
+	srand(time(NULL));
 	Vector2D rand_cell;
 	constexpr int totalAgents = NUMBER_ENEMIES + 1;
 
@@ -169,6 +180,7 @@ void PathFindingScene::InitializeSceneComponents()
 		}
 		_player->setPosition(_normalLayer->cell2pix(rand_cell));
 		_player->SetCurrentCell(rand_cell);
+		GeneratePredefinedSpots();
 	}
 
 	PlaceCoinInNewPosition();	
@@ -207,6 +219,35 @@ Vector2D PathFindingScene::CalculateRandomPosition() const
 	} while (!_normalLayer->isValidCell(rand_cell));
 
 	return rand_cell;
+}
+
+void PathFindingScene::GeneratePredefinedSpots()
+{
+	for (int i = 0; i < 20; i++) {
+		predefinedCoinSpots.push_back(CalculateRandomPosition());
+	}
+	predefinedPlayerStart = CalculateRandomPosition();
+}
+
+void PathFindingScene::ToggleAutoMode()
+{
+	autoMode = !autoMode;
+	if (autoMode) {
+		_player->setPosition(_normalLayer->cell2pix(predefinedPlayerStart));
+		predefinedCoinSpotIndex = 0;
+		SetNextPredefinedCoinPosition();
+	}
+}
+
+void PathFindingScene::SetNextPredefinedCoinPosition()
+{
+	if (predefinedCoinSpotIndex >= predefinedCoinSpots.size()) {
+		autoMode = false;
+		return;
+	}
+	coinPosition = predefinedCoinSpots[predefinedCoinSpotIndex];
+	_player->PathTowardsPosition(_normalLayer->cell2pix(coinPosition), *_normalLayer);
+	predefinedCoinSpotIndex++;
 }
 
 bool PathFindingScene::loadTextures(const char* filename_bg, const char* filename_coin)

@@ -1,2 +1,6 @@
-﻿  Enemy.cpp
-  SDL_Pathfinding.vcxproj -> C:\Users\AbelPujol\Documents\1r semestre\IA\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
+﻿  PathFindingScene.cpp
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(115,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(163,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(244,30): warning C4018: '>=': signed/unsigned mismatch
+  SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe

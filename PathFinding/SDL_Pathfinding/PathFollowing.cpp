@@ -4,7 +4,6 @@
 
 PathFollowing::PathFollowing()
 {
-	num = 0;
 }
 
 PathFollowing::~PathFollowing()
