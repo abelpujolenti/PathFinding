@@ -7,10 +7,6 @@
 
 float AStarAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
-	//manhattan
-	//float dx = abs(start.x - goal.x);
-	//float dy = abs(start.y - goal.y);
-	//return (dx + dy);
 
 	float dx = start.x - goal.x;
 	float dy = start.y - goal.y;
@@ -75,7 +71,7 @@ int AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid
 
 				costSoFar[neighborY][neighborX] = newCost;
 				float distance = Distance(Vector2D(neighborX, neighborY), Vector2D(xEnd, yEnd));
-				frontier.push(std::make_pair(Heuristic(cost, distance, 0.6f, 0.4f), neighborX + neighborY * width));
+				frontier.push(std::make_pair(Heuristic(cost, distance, 0.5f, 0.5f), neighborX + neighborY * width));
 				path[neighborY][neighborX] = curr;
 				visitedNodes++;
 			}

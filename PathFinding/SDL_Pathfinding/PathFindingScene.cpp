@@ -246,6 +246,7 @@ void PathFindingScene::SetNextPredefinedCoinPosition()
 {
 	if (predefinedCoinSpotIndex >= predefinedCoinSpots.size()) {
 		autoMode = false;
+		DebugVisitedNodeInstances();
 		return;
 	}
 	coinPosition = predefinedCoinSpots[predefinedCoinSpotIndex];
