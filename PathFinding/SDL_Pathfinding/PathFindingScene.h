@@ -33,6 +33,7 @@ private:
 	std::vector<Vector2D> predefinedCoinSpots;
 	Vector2D predefinedPlayerStart;
 	int predefinedCoinSpotIndex;
+	std::vector<int> visitedNodeInstances;
 
 	bool autoMode = false;
 
@@ -50,6 +51,7 @@ private:
 	void GeneratePredefinedSpots();
 	void ToggleAutoMode();
 	void SetNextPredefinedCoinPosition();
+	void DebugVisitedNodeInstances();
 	
 public:
 	PathFindingScene();

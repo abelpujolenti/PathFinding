@@ -177,9 +177,9 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 	return true;
 }
 
-void Agent::LoadPath(const Grid& layer) const
+int Agent::LoadPath(const Grid& layer) const
 {
-	_currentPathFindingAlgorithm->CalculatePath(
+	return _currentPathFindingAlgorithm->CalculatePath(
 				layer.pix2cell(_position),
 				layer.pix2cell(_destination),
 				layer,

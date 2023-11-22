@@ -17,7 +17,7 @@ private:
     void RepositionPlayer(SDL_Event* event, const Grid& layer);
     
 public:
-    void PathTowardsPosition(Vector2D position, const Grid& layer);
+    int PathTowardsPosition(Vector2D position, const Grid& layer);
     Player(int numberOfEnemies);    
     void update(float dtime, SDL_Event* event, const Grid& layer) override;
     void draw() const override;

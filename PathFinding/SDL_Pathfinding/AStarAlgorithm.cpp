@@ -22,8 +22,9 @@ float AStarAlgorithm::Heuristic(float g, float h, float a, float b)
 	return g * a + h * b;
 }
 
-void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
+int AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
+	int visitedNodes = 0;
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
 	std::vector<std::vector<int>> path(height, std::vector<int>(width, -2));
@@ -76,7 +77,9 @@ void AStarAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& gri
 				float distance = Distance(Vector2D(neighborX, neighborY), Vector2D(xEnd, yEnd));
 				frontier.push(std::make_pair(Heuristic(cost, distance, 0.6f, 0.4f), neighborX + neighborY * width));
 				path[neighborY][neighborX] = curr;
+				visitedNodes++;
 			}
 		}
 	}
+	return visitedNodes;
 }

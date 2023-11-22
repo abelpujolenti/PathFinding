@@ -1,6 +1,8 @@
-﻿  PathFindingScene.cpp
-C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(115,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(163,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(244,30): warning C4018: '>=': signed/unsigned mismatch
-  SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
+﻿  Agent.cpp
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(6,1): warning C4099: 'Path': type name first seen using 'class' now seen using 'struct'
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5,8): message : see declaration of 'Path'
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\PathFindingAlgorithm.h(4,15): warning C4099: 'Vector2D': type name first seen using 'struct' now seen using 'class'
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(19,8): message : see declaration of 'Vector2D'
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\PathFindingAlgorithm.h(6,11): warning C4099: 'Path': type name first seen using 'struct' now seen using 'class'
+C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5,8): message : see declaration of 'Path'
+  SDL_Pathfinding.vcxproj -> C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\bin\SDL_Pathfinding.exe

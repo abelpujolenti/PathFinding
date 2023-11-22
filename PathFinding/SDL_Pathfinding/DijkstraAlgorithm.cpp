@@ -5,8 +5,9 @@
 #include "Grid.h"
 #include "Path.h"
 
-void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
+int DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
+	int visitedNodes = 0;
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
 	std::vector<std::vector<int>> path(height, std::vector<int>(width, -2));
@@ -58,7 +59,9 @@ void DijkstraAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& 
 				costSoFar[neighborY][neighborX] = newCost;
 				frontier.push(std::make_pair(newCost, neighborX + neighborY * width));
 				path[neighborY][neighborX] = curr;
+				visitedNodes++;
 			}
 		}
 	}
+	return visitedNodes;
 }

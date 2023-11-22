@@ -62,6 +62,10 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 					break;
 				case SDL_SCANCODE_A:
 					ToggleAutoMode();
+					break;
+				case SDL_SCANCODE_D:
+					DebugVisitedNodeInstances();
+					break;
 				default:
 					break;
 			}			
@@ -193,14 +197,12 @@ void PathFindingScene::ResetEnemyLayer() const
 
 void PathFindingScene::PlaceCoinInNewPosition()
 {
-	std::cout << "Holi" << std::endl;
 	do
 	{
 		coinPosition = Vector2D((float)(rand() % _normalLayer->getNumCellX()), (float)(rand() % _normalLayer->getNumCellY()));
 	}
 	while (!_normalLayer->isValidCell(coinPosition) ||
 		Vector2D::Distance(coinPosition, _normalLayer->pix2cell(_player->getPosition()))<3);
-	std::cout << coinPosition.x << " " << coinPosition.y << std::endl;
 		
 }
 
@@ -234,6 +236,7 @@ void PathFindingScene::ToggleAutoMode()
 	autoMode = !autoMode;
 	if (autoMode) {
 		_player->setPosition(_normalLayer->cell2pix(predefinedPlayerStart));
+		visitedNodeInstances.clear();
 		predefinedCoinSpotIndex = 0;
 		SetNextPredefinedCoinPosition();
 	}
@@ -246,8 +249,32 @@ void PathFindingScene::SetNextPredefinedCoinPosition()
 		return;
 	}
 	coinPosition = predefinedCoinSpots[predefinedCoinSpotIndex];
-	_player->PathTowardsPosition(_normalLayer->cell2pix(coinPosition), *_normalLayer);
+	int visitedNodes = _player->PathTowardsPosition(_normalLayer->cell2pix(coinPosition), *_normalLayer);
+	if (visitedNodes > 0) {
+		visitedNodeInstances.push_back(visitedNodes);
+	}
 	predefinedCoinSpotIndex++;
+}
+
+void PathFindingScene::DebugVisitedNodeInstances()
+{
+	float average = 0.f;
+	int max = visitedNodeInstances[0];
+	int min = visitedNodeInstances[0];
+	for (int i = 0; i < visitedNodeInstances.size(); i++) {
+		if (visitedNodeInstances[i] < min) {
+			min = visitedNodeInstances[i];
+		}
+		if (visitedNodeInstances[i] > max) {
+			max = visitedNodeInstances[i];
+		}
+		average += visitedNodeInstances[i];
+	}
+	average /= visitedNodeInstances.size();
+	std::cout << std::endl;
+	std::cout << "Minimum: " << min << std::endl;
+	std::cout << "Maximum: " << max << std::endl;
+	std::cout << "Average: " << average << std::endl;
 }
 
 bool PathFindingScene::loadTextures(const char* filename_bg, const char* filename_coin)

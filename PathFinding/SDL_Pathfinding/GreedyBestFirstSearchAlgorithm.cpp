@@ -13,8 +13,9 @@ float GreedyBestFirstSearchAlgorithm::Distance(Vector2D start, Vector2D goal)
 	return (dx + dy);
 }
 
-void GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
+int GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
+	int visitedNodes = 0;
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
 	std::vector<std::vector<int>> path(height, std::vector<int>(width, -2));
@@ -50,7 +51,9 @@ void GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end,
 
 				frontier.push(std::make_pair(Distance(Vector2D(neighborX, neighborY), Vector2D(xEnd, yEnd)), neighborX + neighborY * width));
 				path[neighborY][neighborX] = curr;
+				visitedNodes++;
 			}
 		}
 	}
+	return visitedNodes;
 }

@@ -5,8 +5,9 @@
 #include "Grid.h"
 #include "Path.h"
 
-void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
+int BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
 {
+	int visitedNodes = 0;
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
 	std::vector<std::vector<int>> path(height, std::vector<int>(width, -2));
@@ -40,7 +41,9 @@ void BreadthFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, co
 				if (abs(i + j) != 1 || !grid.isValidCell(Vector2D(neighborX, neighborY)) || path[neighborY][neighborX] != -2) continue;
 				toVisit.push(neighborX + neighborY * width);
 				path[neighborY][neighborX] = curr;
+				visitedNodes++;
 			}
 		}
 	}
+	return visitedNodes;
 }

@@ -11,5 +11,5 @@ protected:
     void Backtrack(int xEnd, int yEnd, int width, std::vector<std::vector<int>>& path, const Grid& grid, Path& agentPath);
     
 public:
-    virtual void CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& path) = 0;
+    virtual int CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& path) = 0;
 };

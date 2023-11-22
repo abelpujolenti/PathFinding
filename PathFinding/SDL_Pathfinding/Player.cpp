@@ -124,15 +124,17 @@ void Player::RepositionPlayer(SDL_Event* event, const Grid& layer)
     }
 }
 
-void Player::PathTowardsPosition(Vector2D position, const Grid& layer)
+int Player::PathTowardsPosition(Vector2D position, const Grid& layer)
 {
+    int ret = -1;
     _destination = position;
     if (layer.GetCellWeight(layer.pix2cell(_destination)) != 0)
     {
         clearPath();
         currentTargetIndex = -1;
-        LoadPath(layer);
+        ret = LoadPath(layer);
     }
+    return ret;
 }
 
 void Player::draw() const
