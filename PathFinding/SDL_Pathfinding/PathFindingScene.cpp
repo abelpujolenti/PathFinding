@@ -29,6 +29,7 @@ PathFindingScene::PathFindingScene() :
 	_enemies = std::move(auxEnemies);
 
 	InitializeSceneComponents();
+	GeneratePredefinedSpots();
 }
 
 PathFindingScene::~PathFindingScene()
@@ -180,7 +181,6 @@ void PathFindingScene::InitializeSceneComponents()
 		}
 		_player->setPosition(_normalLayer->cell2pix(rand_cell));
 		_player->SetCurrentCell(rand_cell);
-		GeneratePredefinedSpots();
 	}
 
 	PlaceCoinInNewPosition();	
