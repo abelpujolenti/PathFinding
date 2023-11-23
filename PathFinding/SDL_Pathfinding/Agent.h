@@ -57,7 +57,7 @@ protected:
 	
 	void setBehavior(SteeringBehavior* steeringBehavior);
 	bool loadSpriteTexture(char* filename, int num_frames=1);
-	int LoadPath(const Grid& layer) const;
+	int LoadPath(Vector2D start, Vector2D end, const Grid& layer) const;
 	
 public:
 	Agent();

@@ -66,6 +66,10 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 				case SDL_SCANCODE_D:
 					DebugVisitedNodeInstances();
 					break;
+				case SDL_SCANCODE_P:
+					GenerateRandomPathPoints(6);
+					_player->PathToPoints(*_normalLayer);
+					break;
 				default:
 					break;
 			}			
@@ -250,7 +254,8 @@ void PathFindingScene::SetNextPredefinedCoinPosition()
 		return;
 	}
 	coinPosition = predefinedCoinSpots[predefinedCoinSpotIndex];
-	int visitedNodes = _player->PathTowardsPosition(_normalLayer->cell2pix(coinPosition), *_normalLayer);
+	_player->AddPathingPoint(_normalLayer->cell2pix(coinPosition), *_normalLayer);
+	int visitedNodes = _player->PathToPoints(*_normalLayer);
 	if (visitedNodes > 0) {
 		visitedNodeInstances.push_back(visitedNodes);
 	}
@@ -276,6 +281,13 @@ void PathFindingScene::DebugVisitedNodeInstances()
 	std::cout << "Minimum: " << min << std::endl;
 	std::cout << "Maximum: " << max << std::endl;
 	std::cout << "Average: " << average << std::endl;
+}
+
+void PathFindingScene::GenerateRandomPathPoints(int amount)
+{
+	for (int i = 0; i < amount; i++) {
+		_player->AddPathingPoint(_normalLayer->cell2pix(CalculateRandomPosition()), *_normalLayer);
+	}
 }
 
 bool PathFindingScene::loadTextures(const char* filename_bg, const char* filename_coin)

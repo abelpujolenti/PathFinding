@@ -37,7 +37,7 @@ void Enemy::update(float dtime, SDL_Event* event, const Grid& layer)
     if (DidReachDestination(layer))
     {
         _destination = layer.cell2pix(CalculateRandomPosition(layer));
-        LoadPath(layer);
+        LoadPath(_position, _destination, layer);
     }
 }
 

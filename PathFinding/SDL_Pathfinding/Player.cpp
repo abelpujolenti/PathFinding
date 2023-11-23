@@ -53,16 +53,9 @@ void Player::update(float dtime, SDL_Event* event, const Grid& layer)
         }
         if (event->button.button == SDL_BUTTON_RIGHT)
         {
-            //////////////////////HERE/////////////////////////
-
-            //Call Algorithm function to calculate new path points
-            //Remember, function Add Path Point from Agent receive only one Vector2D
-
-            //////////////////////////////////////////////////
-            ///
-
-            PathTowardsPosition(Vector2D((float)(event->button.x), (float)(event->button.y)), layer);
-            
+            _pathingPoints.clear();
+            AddPathingPoint(Vector2D((float)(event->button.x), (float)(event->button.y)), layer);
+            PathToPoints(layer);   
         }
         break;
     default:
@@ -81,18 +74,18 @@ void Player::update(float dtime, SDL_Event* event, const Grid& layer)
     {
         return;
     }
-    std::vector<Vector2D> points = _path->points;
-    for (int i = 0; i < points.size(); ++i)
-    {        
-        if (layer.GetCellWeight(Vector2D(layer.pix2cell(Vector2D(points[i].x, points[i].y)))) == _path->weights[i])
-        {
-            continue;
-        }
-        clearPath();
-        currentTargetIndex = -1;
-        LoadPath(layer);
-        break;
-    }
+    //std::vector<Vector2D> points = _path->points;
+    //for (int i = 0; i < points.size(); ++i)
+    //{        
+    //    if (layer.GetCellWeight(Vector2D(layer.pix2cell(Vector2D(points[i].x, points[i].y)))) == _path->weights[i])
+    //    {
+    //        continue;
+    //    }
+    //    clearPath();
+    //    currentTargetIndex = -1;
+    //    LoadPath(layer);
+    //    break;
+    //}
 }
 
 void Player::OnTryToChangeAlgorithm(CurrentAlgorithm newAlgorithmTag, PathFindingAlgorithm* newPathFindingAlgorithm)
@@ -124,16 +117,31 @@ void Player::RepositionPlayer(SDL_Event* event, const Grid& layer)
     }
 }
 
-int Player::PathTowardsPosition(Vector2D position, const Grid& layer)
+void Player::AddPathingPoint(Vector2D pos, const Grid& layer)
 {
-    int ret = -1;
-    _destination = position;
-    if (layer.GetCellWeight(layer.pix2cell(_destination)) != 0)
-    {
+    Vector2D cell = layer.pix2cell(pos);
+    if (layer.isValidCell(cell)) {
+        _pathingPoints.push_back(pos);
+    }
+    else {
         clearPath();
         currentTargetIndex = -1;
-        ret = LoadPath(layer);
     }
+}
+
+int Player::PathToPoints(const Grid& layer)
+{
+    int ret = 0;
+    clearPath();
+    currentTargetIndex = -1;
+
+    for (int i = 0; i < _pathingPoints.size(); i++) {
+        Vector2D start = i == 0 ? _position : _pathingPoints[i-1];
+        Vector2D end = _pathingPoints[i];
+        _destination = end;
+        ret += LoadPath(start, end, layer);
+    }
+    _pathingPoints.clear();
     return ret;
 }
 

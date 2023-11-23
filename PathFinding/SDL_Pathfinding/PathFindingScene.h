@@ -52,6 +52,7 @@ private:
 	void ToggleAutoMode();
 	void SetNextPredefinedCoinPosition();
 	void DebugVisitedNodeInstances();
+	void GenerateRandomPathPoints(int amount);
 	
 public:
 	PathFindingScene();

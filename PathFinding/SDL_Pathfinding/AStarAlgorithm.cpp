@@ -7,10 +7,14 @@
 
 float AStarAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
-
-	float dx = start.x - goal.x;
-	float dy = start.y - goal.y;
-	return sqrt(dx * dx + dy * dy);
+	float dx = abs(start.x - goal.x);
+	float dy = abs(start.y - goal.y);
+	if (dx < dy) {
+		float temp = dy;
+		dy = dx;
+		dx = temp;
+	}
+	return dy * 1.4142 + dx - dy;
 }
 
 float AStarAlgorithm::Heuristic(float g, float h, float a, float b)

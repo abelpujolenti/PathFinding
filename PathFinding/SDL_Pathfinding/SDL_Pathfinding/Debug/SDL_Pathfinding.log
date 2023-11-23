@@ -1,8 +1,67 @@
-﻿  Agent.cpp
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(6,1): warning C4099: 'Path': type name first seen using 'class' now seen using 'struct'
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5,8): message : see declaration of 'Path'
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\PathFindingAlgorithm.h(4,15): warning C4099: 'Vector2D': type name first seen using 'struct' now seen using 'class'
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(19,8): message : see declaration of 'Vector2D'
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\PathFindingAlgorithm.h(6,11): warning C4099: 'Path': type name first seen using 'struct' now seen using 'class'
-C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5,8): message : see declaration of 'Path'
-  SDL_Pathfinding.vcxproj -> C:\Users\AdriàPérez\Documents\GitHub\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
+﻿  AStarAlgorithm.cpp
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(20,1): warning C4099: 'Vector2D': type name first seen using 'class' now seen using 'struct'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(19): message : see declaration of 'Vector2D'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(6,1): warning C4099: 'Path': type name first seen using 'class' now seen using 'struct'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5): message : see declaration of 'Path'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(17,26): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(34,10): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(34,17): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(36,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(37,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(60,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(60,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(60,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(61,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(61,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(61,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(61,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(67,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(67,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(73,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(73,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(77,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(77,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(77,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(77,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\utility(256,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty1=float
+          ]
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(33): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\AStarAlgorithm.cpp(33): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
+  GreedyBestFirstSearchAlgorithm.cpp
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(20,1): warning C4099: 'Vector2D': type name first seen using 'class' now seen using 'struct'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Vector2D.h(19): message : see declaration of 'Vector2D'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(6,1): warning C4099: 'Path': type name first seen using 'class' now seen using 'struct'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5): message : see declaration of 'Path'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(17,26): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(29,10): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(29,17): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(31,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(32,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(53,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(53,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(56,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(56,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(56,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(56,84): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\utility(256,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty1=float
+          ]
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(28): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\GreedyBestFirstSearchAlgorithm.cpp(28): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
+  Generating Code...
+  LINK : C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\\bin\SDL_Pathfinding.exe not found or not built by the last incremental link; performing full link
+  SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe

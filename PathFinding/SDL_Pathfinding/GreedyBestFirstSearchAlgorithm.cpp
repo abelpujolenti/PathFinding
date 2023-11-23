@@ -7,10 +7,14 @@
 
 float GreedyBestFirstSearchAlgorithm::Distance(Vector2D start, Vector2D goal)
 {
-	//manhattan
 	float dx = abs(start.x - goal.x);
 	float dy = abs(start.y - goal.y);
-	return (dx + dy);
+	if (dx < dy) {
+		float temp = dy;
+		dy = dx;
+		dx = temp;
+	}
+	return dy * 1.4142 + dx - dy;
 }
 
 int GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, const Grid& grid, Path& agentPath)
