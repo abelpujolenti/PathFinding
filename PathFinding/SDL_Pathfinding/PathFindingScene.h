@@ -5,7 +5,7 @@
 #include "Vector2D.h"
 
 
-#define NUMBER_ENEMIES 0
+#define NUMBER_ENEMIES 3
 #define PATH_MAZE_CSV "../res/maze.csv"
 #define PATH_MAZE_PNG "../res/maze.png"
 #define PATH_COIN "../res/coin.png"
@@ -31,6 +31,7 @@ private:
 
 	Vector2D coinPosition;
 	std::vector<Vector2D> predefinedCoinSpots;
+	std::vector<Vector2D> pathSpots;
 	Vector2D predefinedPlayerStart;
 	int predefinedCoinSpotIndex;
 	std::vector<int> visitedNodeInstances;
@@ -43,6 +44,7 @@ private:
 	
 	void drawMaze() const;
 	void drawCoin() const;
+	void drawPathMarkers() const;
 	void InitializeSceneComponents();
 	void ResetEnemyLayer() const;
 	void PlaceCoinInNewPosition();
@@ -53,6 +55,7 @@ private:
 	void SetNextPredefinedCoinPosition();
 	void DebugVisitedNodeInstances();
 	void GenerateRandomPathPoints(int amount);
+	void PlayerStop();
 	
 public:
 	PathFindingScene();

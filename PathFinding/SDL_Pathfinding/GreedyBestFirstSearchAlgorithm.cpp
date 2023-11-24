@@ -23,7 +23,6 @@ int GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, 
 	int width = grid.getNumCellX();
 	int height = grid.getNumCellY();
 	std::vector<std::vector<int>> path(height, std::vector<int>(width, -2));
-	std::vector<std::vector<float>> costSoFar(height, std::vector<float>(width, -1));
 	std::priority_queue<std::pair<float, int>, std::vector<std::pair<float, int>>, std::greater<std::pair<float, int>>> frontier;
 	frontier.push(std::make_pair(0, (int)end.x + (int)end.y * width));
 	path[end.y][end.x] = -1;
@@ -35,7 +34,6 @@ int GreedyBestFirstSearchAlgorithm::CalculatePath(Vector2D start, Vector2D end, 
 		int curr = frontier.top().second;
 		int currX = curr % width;
 		int currY = curr / width;
-		float cost = costSoFar[currY][currX];
 		frontier.pop();
 
 		if (currX == xEnd && currY == yEnd) {

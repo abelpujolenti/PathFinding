@@ -41,6 +41,11 @@ void Player::update(float dtime, SDL_Event* event, const Grid& layer)
         if (event->key.keysym.scancode == SDL_SCANCODE_4)
         {
             OnTryToChangeAlgorithm(CurrentAlgorithm::A, new AStarAlgorithm);
+        }		
+        if (event->key.keysym.scancode == SDL_SCANCODE_5)
+        {
+            _travelingSalesman.CalculatePathThroughPoints(_position, pathingPoints, layer, *_path);
+            pathingPoints.clear();
         }
         break;
     case SDL_MOUSEBUTTONDOWN:
@@ -53,7 +58,7 @@ void Player::update(float dtime, SDL_Event* event, const Grid& layer)
         }
         if (event->button.button == SDL_BUTTON_RIGHT)
         {
-            _pathingPoints.clear();
+            pathingPoints.clear();
             AddPathingPoint(Vector2D((float)(event->button.x), (float)(event->button.y)), layer);
             PathToPoints(layer);   
         }
@@ -121,7 +126,7 @@ void Player::AddPathingPoint(Vector2D pos, const Grid& layer)
 {
     Vector2D cell = layer.pix2cell(pos);
     if (layer.isValidCell(cell)) {
-        _pathingPoints.push_back(pos);
+        pathingPoints.push_back(pos);
     }
     else {
         clearPath();
@@ -135,13 +140,13 @@ int Player::PathToPoints(const Grid& layer)
     clearPath();
     currentTargetIndex = -1;
 
-    for (int i = 0; i < _pathingPoints.size(); i++) {
-        Vector2D start = i == 0 ? _position : _pathingPoints[i-1];
-        Vector2D end = _pathingPoints[i];
+    for (int i = 0; i < pathingPoints.size(); i++) {
+        Vector2D start = i == 0 ? _position : pathingPoints[i-1];
+        Vector2D end = pathingPoints[i];
         _destination = end;
         ret += LoadPath(start, end, layer);
     }
-    _pathingPoints.clear();
+    pathingPoints.clear();
     return ret;
 }
 

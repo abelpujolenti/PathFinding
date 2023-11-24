@@ -60,15 +60,15 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 						InitializeSceneComponents();
 					}
 					break;
+				case SDL_SCANCODE_5:
+					pathSpots.clear();
+					GenerateRandomPathPoints(5);
+					break;
 				case SDL_SCANCODE_A:
 					ToggleAutoMode();
 					break;
 				case SDL_SCANCODE_D:
 					DebugVisitedNodeInstances();
-					break;
-				case SDL_SCANCODE_P:
-					GenerateRandomPathPoints(6);
-					_player->PathToPoints(*_normalLayer);
 					break;
 				default:
 					break;
@@ -83,6 +83,8 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 	{
 		_enemies[i]->update(dtime, event, *_normalLayer);
 	}	
+
+	int previousTargetIndex = _player->getCurrentTargetIndex();
 
 	_player->update(dtime, event, *_enemyLayer);
 
@@ -99,11 +101,15 @@ void PathFindingScene::update(float dtime, SDL_Event *event)
 		}
 	}
 	
+	if (_player->getCurrentTargetIndex() == -1 && previousTargetIndex != -1) {
+		PlayerStop();
+	}
 }
 
 void PathFindingScene::draw()
 {
 	drawMaze();
+	drawPathMarkers();
 	drawCoin();
 
 	if (draw_grid)
@@ -165,6 +171,15 @@ void PathFindingScene::drawCoin() const
 	const int offset = CELL_SIZE / 2;
 	const SDL_Rect dstrect = {(int)coin_coords.x-offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE};
 	SDL_RenderCopy(TheApp::Instance()->getRenderer(), coin_texture, NULL, &dstrect);
+}
+
+void PathFindingScene::drawPathMarkers() const
+{
+	if (pathSpots.empty()) return;
+	for (int i = 0; i < pathSpots.size(); i++) {
+		Vector2D markerPos = pathSpots[i];
+		draw_circle(TheApp::Instance()->getRenderer(), (int)markerPos.x, (int)markerPos.y, 20, 255, 50, 100, 255);
+	}
 }
 
 void PathFindingScene::InitializeSceneComponents()
@@ -286,8 +301,15 @@ void PathFindingScene::DebugVisitedNodeInstances()
 void PathFindingScene::GenerateRandomPathPoints(int amount)
 {
 	for (int i = 0; i < amount; i++) {
-		_player->AddPathingPoint(_normalLayer->cell2pix(CalculateRandomPosition()), *_normalLayer);
+		Vector2D p = _normalLayer->cell2pix(CalculateRandomPosition());
+		pathSpots.push_back(p);
+		_player->AddPathingPoint(p, *_normalLayer);
 	}
+}
+
+void PathFindingScene::PlayerStop()
+{
+	pathSpots.clear();
 }
 
 bool PathFindingScene::loadTextures(const char* filename_bg, const char* filename_coin)
