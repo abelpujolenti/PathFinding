@@ -3,14 +3,18 @@
 #include <minmax.h>
 #include <SDL.h>
 #include <SDL_image.h>
+
+#include "CurrentAlgorithm.h"
 #include "SDL_SimpleApp.h"
-#include "Path.h"
-#include "Vector2D.h"
 #include "utils.h"
 
+class PathFindingAlgorithm;
+class Path;
+class Grid;
 
 class Agent
 {
+	
 public:
 	class SteeringBehavior
 	{
@@ -19,14 +23,22 @@ public:
 		virtual ~SteeringBehavior() {};
 		virtual void applySteeringForce(Agent *agent, float dtime) {};
 	};
-private:
-	SteeringBehavior *steering_behaviour;
-	Vector2D position;
-	Vector2D velocity;
-	Vector2D target;
+	
+protected:
+
+	std::unique_ptr<PathFindingAlgorithm> _currentPathFindingAlgorithm;
+	
+	std::unique_ptr<SteeringBehavior> _steeringBehavior;
+
+	Vector2D _currentCell;
+	Vector2D _destination;
+	
+	Vector2D _position;
+	Vector2D _velocity;
+	Vector2D _target;
 
 	// Pathfinding
-	Path path;
+	std::unique_ptr<Path> _path;
 	int currentTargetIndex;
 
 	float mass;
@@ -39,28 +51,37 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
-
+	int redValueCircle;
+	int greenValueCircle;
+	int blueValueCircle;
+	
+	void setBehavior(SteeringBehavior* steeringBehavior);
+	bool loadSpriteTexture(char* filename, int num_frames=1);
+	int LoadPath(Vector2D start, Vector2D end, const Grid& layer) const;
+	
 public:
 	Agent();
-	~Agent();
-	Vector2D getPosition();
-	Vector2D getTarget();
-	Vector2D getVelocity();
-	float getMaxVelocity();
-	float getMaxForce();
-	float getMass();
-	void setBehavior(SteeringBehavior *behavior);
+	virtual ~Agent();
+	Vector2D getPosition() const;
+	Vector2D getTarget() const;
+	Vector2D getVelocity() const;
+	Vector2D getPathPoint(int idx) const;
+	int getPathSize() const;
+	int getCurrentTargetIndex() const;
+	float getMaxVelocity() const;
+	float getMaxForce() const;
+	float getMass() const;
 	void setPosition(Vector2D position);
+	virtual void SetCurrentCell(Vector2D currentCell);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
-	void addPathPoint(Vector2D point);
 	void setCurrentTargetIndex(int idx);
-	int getCurrentTargetIndex();
-	int getPathSize();
-	Vector2D getPathPoint(int idx);
 	void clearPath();
-	void update(float dtime, SDL_Event *event);
-	void draw();
-	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
+	virtual void update(float dtime, SDL_Event *event, const Grid& layer);
+	virtual void draw() const = 0;
+
+	
+	int num;
+	
 	
 };

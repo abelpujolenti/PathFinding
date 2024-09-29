@@ -1,20 +1,24 @@
 #include "Agent.h"
+#include "Path.h"
+#include "Grid.h"
+#include "PathFindingAlgorithm.h"
 
 using namespace std;
 
-Agent::Agent() : sprite_texture(0),
-                 position(Vector2D(100, 100)),
-	             target(Vector2D(1000, 100)),
-	             velocity(Vector2D(0,0)),
-	             currentTargetIndex(-1),
-				 mass(0.1f),
-				 max_force(150),
-				 max_velocity(200),
-				 orientation(0),
-				 sprite_num_frames(0),
-	             sprite_w(0),
-	             sprite_h(0),
-	             draw_sprite(false)
+Agent::Agent(): _path(std::make_unique<Path>()),
+				currentTargetIndex(-1),
+				mass(0.1f),
+				orientation(0),
+				max_force(150),
+				max_velocity(200),
+				sprite_texture(0),
+				draw_sprite(false),
+				sprite_num_frames(0),
+				sprite_w(0),
+				sprite_h(0),
+				redValueCircle(0),
+				greenValueCircle(0),
+				blueValueCircle(0)
 {
 }
 
@@ -22,157 +26,133 @@ Agent::~Agent()
 {
 	if (sprite_texture)
 		SDL_DestroyTexture(sprite_texture);
-	if (steering_behaviour)
-		delete (steering_behaviour);
 }
 
-void Agent::setBehavior(SteeringBehavior *behavior)
+void Agent::setBehavior(SteeringBehavior* steeringBehavior)
 {
-	steering_behaviour = behavior;
+	_steeringBehavior.reset(steeringBehavior);
 }
 
-Vector2D Agent::getPosition()
+Vector2D Agent::getPosition() const
 {
-	return position;
+	return _position;
 }
 
-Vector2D Agent::getTarget()
+Vector2D Agent::getTarget() const
 {
-	return target;
+	return _target;
 }
 
-Vector2D Agent::getVelocity()
+Vector2D Agent::getVelocity() const
 {
-	return velocity;
+	return _velocity;
 }
 
-float Agent::getMaxVelocity()
+float Agent::getMaxVelocity() const
 {
 	return max_velocity;
 }
 
-float Agent::getMaxForce()
+float Agent::getMaxForce() const
 {
 	return max_force;
 }
 
-float Agent::getMass()
+float Agent::getMass() const
 {
 	return mass;
 }
 
-void Agent::setPosition(Vector2D _position)
+void Agent::setPosition(Vector2D position)
 {
-	position = _position;
+	_position = position;
 }
 
-void Agent::setTarget(Vector2D _target)
+void Agent::SetCurrentCell(Vector2D currentCell)
 {
-	target = _target;
+	_currentCell = currentCell;
 }
 
-void Agent::setVelocity(Vector2D _velocity)
+void Agent::setTarget(Vector2D target)
 {
-	velocity = _velocity;
+	_target = target;
 }
 
-void Agent::update(float dtime, SDL_Event *event)
+void Agent::setVelocity(Vector2D velocity)
 {
+	_velocity = velocity;
+}
 
-	//cout << "agent update:" << endl;
+int Agent::getCurrentTargetIndex() const
+{
+	return currentTargetIndex;
+}
 
+int Agent::getPathSize() const
+{
+	return _path->points.size();
+}
+
+Vector2D Agent::getPathPoint(int idx) const
+{
+	return _path->points[idx];
+}
+
+void Agent::clearPath()
+{
+	setCurrentTargetIndex(-1);
+	_path->points.clear();
+	_path->weights.clear();
+}
+
+void Agent::update(float dtime, SDL_Event* event, const Grid& layer)
+{
+	_currentCell = layer.pix2cell(_position);
+	
 	switch (event->type) {
 		/* Keyboard & Mouse events */
-	case SDL_KEYDOWN:
-		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-			draw_sprite = !draw_sprite;
+		case SDL_KEYDOWN:
+			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
+			{
+				draw_sprite = !draw_sprite;
+			}			
 		break;
 	default:
 		break;
 	}
 
 	// Apply the steering behavior
-	steering_behaviour->applySteeringForce(this, dtime);
+	_steeringBehavior->applySteeringForce(this, dtime);
 	
 	// Update orientation
-	if (velocity.Length())
-		orientation = (float)(atan2(velocity.y, velocity.x) * RAD2DEG);
+	if (_velocity.Length())
+	{
+		orientation = atan2(_velocity.y, _velocity.x) * RAD2DEG;
+	}
+		
 
 	// Trim position values to window size
-	if (position.x < 0) position.x = TheApp::Instance()->getWinSize().x;
-	if (position.y < 0) position.y = TheApp::Instance()->getWinSize().y;
-	if (position.x > TheApp::Instance()->getWinSize().x) position.x = 0;
-	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
-}
-
-
-void Agent::addPathPoint(Vector2D point)
-{
-	if (path.points.size() > 0)
-		if (path.points[path.points.size() - 1] == point)
-			return;
-
-	path.points.push_back(point);
-}
-
-
-int Agent::getCurrentTargetIndex()
-{
-	return currentTargetIndex;
-}
-
-int Agent::getPathSize()
-{
-	return path.points.size();
-}
-
-Vector2D Agent::getPathPoint(int idx)
-{
-	return path.points[idx];
-}
-
-void Agent::clearPath()
-{
-	setCurrentTargetIndex(-1);
-	path.points.clear();
+	if (_position.x < 0)
+	{
+		_position.x = TheApp::Instance()->getWinSize().x;
+	}
+	if (_position.y < 0)
+	{
+		_position.y = TheApp::Instance()->getWinSize().y;
+	}
+	if (_position.x > TheApp::Instance()->getWinSize().x)
+	{
+		_position.x = 0;
+	}
+	if (_position.y > TheApp::Instance()->getWinSize().y)
+	{
+		_position.y = 0;
+	}
 }
 
 void Agent::setCurrentTargetIndex(int idx)
 {
 	currentTargetIndex = idx;
-}
-
-void Agent::draw()
-{
-	// Path
-	for (int i = 0; i < (int)path.points.size(); i++)
-	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)(path.points[i].x), (int)(path.points[i].y), 15, 255, 255, 0, 255);
-		if (i > 0)
-			SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)(path.points[i - 1].x), (int)(path.points[i - 1].y), (int)(path.points[i].x), (int)(path.points[i].y));
-	}
-
-	if (draw_sprite)
-	{
-		Uint32 sprite;
-		
-		if (velocity.Length() < 5.0)
-			sprite = 1;
-		else
-			sprite = (int)(SDL_GetTicks() / (-0.1*velocity.Length() + 250)) % sprite_num_frames;
-		
-		SDL_Rect srcrect = { (int)sprite * sprite_w, 0, sprite_w, sprite_h };
-		SDL_Rect dstrect = { (int)position.x - (sprite_w / 2), (int)position.y - (sprite_h / 2), sprite_w, sprite_h };
-		SDL_Point center = { sprite_w / 2, sprite_h / 2 };
-		SDL_RenderCopyEx(TheApp::Instance()->getRenderer(), sprite_texture, &srcrect, &dstrect, orientation+90, &center, SDL_FLIP_NONE);
-	}
-	else 
-	{
-		draw_circle(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, 15, 255, 255, 255, 255);
-		SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, (int)(position.x+15*cos(orientation*DEG2RAD)), (int)(position.y+15*sin(orientation*DEG2RAD)));
-	}
-
-	
 }
 
 bool Agent::loadSpriteTexture(char* filename, int _num_frames)
@@ -195,4 +175,13 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 		SDL_FreeSurface(image);
 
 	return true;
+}
+
+int Agent::LoadPath(Vector2D start, Vector2D end, const Grid& layer) const
+{
+	return _currentPathFindingAlgorithm->CalculatePath(
+				layer.pix2cell(start),
+				layer.pix2cell(end),
+				layer,
+				*_path);
 }

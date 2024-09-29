@@ -1,10 +1,12 @@
-﻿  Agent.cpp
-  Grid.cpp
+﻿  PathFindingScene.cpp
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(6,1): warning C4099: 'Path': type name first seen using 'class' now seen using 'struct'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\Path.h(5): message : see declaration of 'Path'
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(82,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(130,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(179,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(187,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(266,30): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\SDL_Pathfinding\PathFindingScene.cpp(285,20): warning C4018: '<': signed/unsigned mismatch
   main.cpp
-  PathFollowing.cpp
-  ScenePathFindingMouse.cpp
-  SDL_SimpleApp.cpp
-  Seek.cpp
-  utils.cpp
   Generating Code...
-  SDL_Pathfinding.vcxproj -> C:\Users\lluis\Desktop\AI-Enti\2223\practiques\old\SDL_Pathfinding_v01\SDL_Pathfinding\bin\SDL_Pathfinding.exe
+  SDL_Pathfinding.vcxproj -> C:\Users\Usuario\Documents\ENTI\ai\PathFinding\PathFinding\bin\SDL_Pathfinding.exe
